@@ -1,0 +1,32 @@
+version: '3.1'
+services:
+  server:
+    build:
+      context: ./packages/server
+    env_file: ./packages/server/.env
+    container_name: server
+    ports:
+      - 3000:3000
+    volumes:
+      - ./packages/server:/usr/src/app
+      - /usr/src/app/node_modules
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    command: npm run dev
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      # - data-volume:/data/db # adds data persistence
+      - ./packages/db:/docker-entrypoint-initdb.d
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: db
+    command: --smallfiles
