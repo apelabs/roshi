@@ -2,8 +2,22 @@
   "name": "server",
   "version": "0.0.0",
   "author": "Xavier Fuentes <me@xavierfuentes.com>",
-  "main": "index.js",
+  "main": "./build/main.js",
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "build": "backpack build",
+    "dev": "backpack",
+    "postinstall": "backpack build",
+    "start": "backpack build && node ./build/main.js"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.7"
+  },
+  "devDependencies": {
+    "backpack-core": "^0.7.0"
+  }
 }
