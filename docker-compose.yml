@@ -4,9 +4,9 @@ services:
     build:
       context: ./packages/server
     env_file: ./packages/server/.env
-    container_name: server
+    container_name: hubert_server
     ports:
-      - 3000:3000
+      - 4000:4000
     volumes:
       - ./packages/server:/usr/src/app
       - /usr/src/app/node_modules
@@ -18,7 +18,7 @@ services:
 
   mongodb:
     image: mongo
-    container_name: mongodb
+    container_name: hubert_db
     restart: always
     ports:
       - 27017:27017
@@ -30,3 +30,18 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: db
     command: --smallfiles
+
+  webclient:
+    build:
+      context: ./packages/client/web
+    container_name: hubert_web
+    ports:
+      - 3000:3000
+    volumes:
+      - ./packages/client/web:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - server
+    links:
+      - server
+    command: npm run dev
