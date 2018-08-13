@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "@apelabs/conrad-server",
   "version": "0.0.0",
   "author": "Xavier Fuentes <me@xavierfuentes.com>",
   "main": "./build/main.js",

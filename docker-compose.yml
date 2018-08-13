@@ -4,7 +4,7 @@ services:
     build:
       context: ./packages/server
     env_file: ./packages/server/.env
-    container_name: hubert_server
+    container_name: conrad_server
     ports:
       - 4000:4000
     volumes:
@@ -18,7 +18,7 @@ services:
 
   mongodb:
     image: mongo
-    container_name: hubert_db
+    container_name: conrad_db
     restart: always
     ports:
       - 27017:27017
@@ -34,7 +34,7 @@ services:
   webclient:
     build:
       context: ./packages/client/web
-    container_name: hubert_web
+    container_name: conrad_webclient
     ports:
       - 3000:3000
     volumes:

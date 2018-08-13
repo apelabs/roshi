@@ -1,5 +1,5 @@
 {
-  "name": "admin",
+  "name": "@apelabs/conrad-admin",
   "version": "0.0.0",
   "author": "Xavier Fuentes <me@xavierfuentes.com>",
   "main": "index.js",
