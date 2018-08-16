@@ -1,5 +1,5 @@
 {
-  "name": "@apelabs/conrad-server",
+  "name": "@apelabs/roshi-server",
   "version": "0.0.0",
   "author": "Xavier Fuentes <me@xavierfuentes.com>",
   "main": "./build/main.js",

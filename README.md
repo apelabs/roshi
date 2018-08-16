@@ -1,4 +1,4 @@
-# CONRAD
+# Roshi
 
 ## Setup with Docker
 You'll need:

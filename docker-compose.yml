@@ -4,7 +4,7 @@ services:
     build:
       context: ./packages/server
     env_file: ./packages/server/.env
-    container_name: conrad_server
+    container_name: roshi_server
     ports:
       - 4000:4000
     volumes:
@@ -18,7 +18,7 @@ services:
 
   mongodb:
     image: mongo
-    container_name: conrad_db
+    container_name: roshi_db
     restart: always
     ports:
       - 27017:27017
@@ -28,13 +28,13 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: db
+      MONGO_INITDB_DATABASE: kamehouse
     command: --smallfiles
 
   webclient:
     build:
       context: ./packages/client/web
-    container_name: conrad_webclient
+    container_name: roshi_webclient
     ports:
       - 3000:3000
     volumes:
