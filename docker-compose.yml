@@ -1,27 +1,11 @@
 version: '3.1'
 services:
-  server:
-    build:
-      context: ./packages/server
-    env_file: ./packages/server/.env
-    container_name: roshi_server
-    ports:
-      - 4000:4000
-    volumes:
-      - ./packages/server:/usr/src/app
-      - /usr/src/app/node_modules
-    links:
-      - mongodb
-    depends_on:
-      - mongodb
-    command: npm run dev
-
   mongodb:
     image: mongo
     container_name: roshi_db
     restart: always
     ports:
-      - 27017:27017
+      - 2020:27017
     volumes:
       # - data-volume:/data/db # adds data persistence
       - ./packages/db:/docker-entrypoint-initdb.d
@@ -31,12 +15,39 @@ services:
       MONGO_INITDB_DATABASE: kamehouse
     command: --smallfiles
 
+  server:
+    build:
+      context: ./packages/server
+    env_file: ./packages/server/.env
+    container_name: roshi_server
+    ports:
+      - 3030:4000
+    volumes:
+      - ./packages/server:/usr/src/app
+      - /usr/src/app/node_modules
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    command: npm run dev
+
+  site:
+    build:
+      context: ./packages/site
+    container_name: roshi_site
+    ports:
+      - 4040:3000
+    volumes:
+      - ./packages/site:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev
+
   webclient:
     build:
       context: ./packages/client/web
     container_name: roshi_webclient
     ports:
-      - 3000:3000
+      - 5050:3000
     volumes:
       - ./packages/client/web:/usr/src/app
       - /usr/src/app/node_modules

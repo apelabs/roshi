@@ -12,9 +12,11 @@ Once Docker's installed and set up:
 1. Clone this repo.
 2. install the project's dependencies by running `npm i` or `yarn` (from the root).
 3. Run `docker-compose up --build` or `docker-compose up -d --build` if you're not interested in seeing the logs.
-4. Navigate to [http://localhost:3000](http://localhost:3000)
+4. Navigate to [http://localhost:4040](http://localhost:4040)
 
-> The server can be accessed from [http://localhost:4000](http://localhost:4000)
+> The mongodb can be accessed from [http://localhost:2020](http://localhost:2020)
+> The server can be accessed from [http://localhost:3030](http://localhost:3030)
+> The app can be accessed from [http://localhost:5050](http://localhost:5050)
 
 ## Setup without Docker
 **wip**
