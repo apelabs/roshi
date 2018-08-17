@@ -7,9 +7,9 @@ const app = express();
 
 app.use('/', (req, res) => {
   res.statusCode = 200;
-	res.json({ status:"success", message:"Hello world!", data:{ } })
-})
+  res.json({ status: 'success', message: 'Hello world!', data: {} });
+});
 
 app.listen(port, () => {
   console.log(`Server listing on ${port}`);
-})
+});

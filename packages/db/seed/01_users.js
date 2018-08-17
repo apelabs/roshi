@@ -1,6 +1,6 @@
 const user = {
   firstName: 'Jackie',
-  lastName: 'Chun'
-}
+  lastName: 'Chun',
+};
 
 db.users.save(user);
