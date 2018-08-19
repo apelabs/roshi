@@ -1,4 +1,4 @@
-FROM node:carbon
+FROM node:alpine
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -14,5 +14,5 @@ RUN npm install --quiet
 # Bundle app source
 COPY . /usr/src/app
 
-EXPOSE 3000
+EXPOSE 4000
 CMD [ "npm", "run", "dev" ]
