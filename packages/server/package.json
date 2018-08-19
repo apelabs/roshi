@@ -2,7 +2,6 @@
   "name": "@apelabs/roshi-server",
   "version": "0.0.0",
   "author": "Xavier Fuentes <me@xavierfuentes.com>",
-  "main": "./build/main.js",
   "license": "MIT",
   "scripts": {
     "build": "backpack build",
@@ -14,8 +13,8 @@
     "node": "8.x"
   },
   "dependencies": {
-    "express": "^4.16.3",
-    "mongoose": "^5.2.7"
+    "apollo-server": "^2.0.4",
+    "graphql": "^0.13.2"
   },
   "devDependencies": {
     "backpack-core": "^0.7.0"
