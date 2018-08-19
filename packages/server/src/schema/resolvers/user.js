@@ -16,7 +16,10 @@ module.exports = {
         password,
       });
 
-      user.save();
+      user.save(error => {
+        // if (err) return handleError(err);
+        return user;
+      });
     },
   },
 };
