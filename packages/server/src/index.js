@@ -17,7 +17,7 @@ mongoose
     new ApolloServer({
       typeDefs,
       resolvers,
-      // context: {},
+      // context: async (req) => {},
       playground: {
         settings: {
           'editor.theme': 'light',

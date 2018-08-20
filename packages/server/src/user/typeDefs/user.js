@@ -16,6 +16,6 @@ module.exports = gql`
   }
 
   extend type Mutation {
-    signup(email: String!, firstName: String): User!
+    signup(email: String!, firstName: String, password: String): User!
   }
 `;

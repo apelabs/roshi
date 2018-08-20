@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { User } = require('../models');
 
 module.exports = {
   Query: {
@@ -7,7 +7,7 @@ module.exports = {
   },
 
   Mutation: {
-    signup(email, firstName, lastName, avatarUrl, password) {
+    async signup(root, { email, firstName, lastName, avatarUrl, password }) {
       const user = new User({
         firstName,
         lastName,
@@ -16,10 +16,11 @@ module.exports = {
         password,
       });
 
-      user.save(error => {
-        // if (err) return handleError(err);
-        return user;
-      });
+      try {
+        await user.save();
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
