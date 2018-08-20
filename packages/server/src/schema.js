@@ -12,7 +12,6 @@ const base = gql`
     _empty: String
   }
 `;
-console.dir(Object.assign({}, user.resolvers), { depth: null });
 
 module.exports = {
   typeDefs: [
