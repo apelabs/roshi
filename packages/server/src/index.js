@@ -1,15 +1,32 @@
 require('dotenv').config();
 
-const express = require('express');
+const { ApolloServer } = require('apollo-server');
+const crypto = require('crypto');
+const mongoose = require('mongoose');
 
-const port = process.env.PORT || 4000;
-const app = express();
+const { typeDefs, resolvers } = require('./schema');
 
-app.use('/', (req, res) => {
-  res.statusCode = 200;
-  res.json({ status: 'success', message: 'Hello world!', data: {} });
-});
+mongoose.set('debug', process.env.NODE_ENV !== 'production');
 
-app.listen(port, () => {
-  console.log(`Server listing on ${port}`);
-});
+mongoose
+  .connect(
+    process.env.MONGODB_URI,
+    { useNewUrlParser: true }
+  )
+  .then(() =>
+    new ApolloServer({
+      typeDefs,
+      resolvers,
+      // context: async (req) => {},
+      playground: {
+        settings: {
+          'editor.theme': 'light',
+          'editor.cursorShape': 'line',
+        },
+      },
+    }).listen()
+  )
+  .then(serverInfo => {
+    console.log(`🚀  Server ready at ${serverInfo.url}`);
+  })
+  .catch(error => console.error(error));
