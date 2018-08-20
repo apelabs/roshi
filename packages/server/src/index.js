@@ -14,7 +14,17 @@ mongoose
     { useNewUrlParser: true }
   )
   .then(() =>
-    new ApolloServer({ typeDefs, resolvers, playground: { 'editor.theme': 'light' } }).listen()
+    new ApolloServer({
+      typeDefs,
+      resolvers,
+      // context: {},
+      playground: {
+        settings: {
+          'editor.theme': 'light',
+          'editor.cursorShape': 'line',
+        },
+      },
+    }).listen()
   )
   .then(serverInfo => {
     console.log(`🚀  Server ready at ${serverInfo.url}`);
