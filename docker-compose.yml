@@ -36,7 +36,7 @@ services:
       context: ./packages/ui
     container_name: roshi_ui
     ports:
-      - 6060:3000
+      - 4040:3000
     volumes:
       - ./packages/ui:/usr/src/app
       - /usr/src/app/node_modules
@@ -47,7 +47,10 @@ services:
       context: ./packages/site
     container_name: roshi_site
     ports:
-      - 4040:3000
+      - 5050:3000
+    depends_on:
+      - server
+      - ui
     volumes:
       - ./packages/site:/usr/src/app
       - /usr/src/app/node_modules
@@ -58,12 +61,13 @@ services:
       context: ./packages/client/web
     container_name: roshi_webclient
     ports:
-      - 5050:3000
+      - 7070:3000
     volumes:
       - ./packages/client/web:/usr/src/app
       - /usr/src/app/node_modules
     depends_on:
       - server
+      - ui
     links:
       - server
     command: npm run dev
