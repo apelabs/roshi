@@ -56,3 +56,14 @@ services:
     links:
       - server
     command: npm run dev
+  
+  ui:
+    build:
+      context: ./packages/ui/ui
+    container_name: roshi_ui
+    ports:
+      - 6060:3000
+    volumes:
+      - ./packages/ui/ui:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev    
