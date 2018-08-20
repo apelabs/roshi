@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-// const { Schema } = mongoose;
-
 module.exports = mongoose.model(
   'User',
   new mongoose.Schema(
@@ -21,10 +19,6 @@ module.exports = mongoose.model(
         required: true,
       },
       avatarUrl: String,
-      // challenges: {
-      //   type: [mongoose.Schema.Types.ObjectId],
-      //   ref: 'Challenge'
-      // }
     },
     { timestamps: true }
   )

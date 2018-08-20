@@ -8,25 +8,24 @@ const { typeDefs, resolvers } = require('./schema');
 
 mongoose.set('debug', process.env.NODE_ENV !== 'production');
 
-mongoose
-  .connect(
+async function startServer() {
+  await mongoose.connect(
     process.env.MONGODB_URI,
     { useNewUrlParser: true }
-  )
-  .then(() =>
-    new ApolloServer({
-      typeDefs,
-      resolvers,
-      // context: async (req) => {},
-      playground: {
-        settings: {
-          'editor.theme': 'light',
-          'editor.cursorShape': 'line',
-        },
+  );
+
+  const serverInfo = await new ApolloServer({
+    typeDefs,
+    resolvers,
+    // context: async (req) => {},
+    playground: {
+      settings: {
+        'editor.theme': 'light',
+        'editor.cursorShape': 'line',
       },
-    }).listen()
-  )
-  .then(serverInfo => {
-    console.log(`🚀  Server ready at ${serverInfo.url}`);
-  })
-  .catch(error => console.error(error));
+    },
+  }).listen();
+  console.log(`🚀  Server ready at ${serverInfo.url}`);
+}
+
+startServer().catch(error => console.error(error.stack));

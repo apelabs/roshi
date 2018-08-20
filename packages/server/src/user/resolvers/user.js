@@ -1,26 +1,13 @@
 const { User } = require('../models');
+const { createUser, getUser, getAllUsers } = require('../controllers');
 
 module.exports = {
   Query: {
-    users: () => User.find({}),
-    user: ({ id }) => User.findById(id),
+    user: (root, args) => getUser(args),
+    users: (root, args) => getAllUsers(args),
   },
 
   Mutation: {
-    async signup(root, { email, firstName, lastName, avatarUrl, password }) {
-      const user = new User({
-        firstName,
-        lastName,
-        email,
-        avatarUrl,
-        password,
-      });
-
-      try {
-        await user.save();
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    createUser: (root, args) => createUser(args),
   },
 };
