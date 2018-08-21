@@ -1,7 +1,11 @@
 {
   "name": "@apelabs/roshi",
   "version": "0.0.0",
-  "author": "Xavier Fuentes <me@xavierfuentes.com>",
+  "author": "Ape Labs",
+  "contributors": [
+    "Albert Vallverdu <byverdu@gmail.com>",
+    "Xavier Fuentes <me@xavierfuentes.com>"
+  ],
   "private": true,
   "scripts": {
     "precommit": "lint-staged",

@@ -1,7 +1,11 @@
 {
   "name": "@apelabs/roshi-ui",
   "version": "0.1.0",
-  "author": "Albert Vallverdu <byverdu@gmail.com>",
+  "author": "Ape Labs",
+  "contributors": [
+    "Albert Vallverdu <byverdu@gmail.com>",
+    "Xavier Fuentes <me@xavierfuentes.com>"
+  ],
   "private": true,
   "main": "build/index.js",
   "dependencies": {

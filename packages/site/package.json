@@ -1,7 +1,11 @@
 {
   "name": "@apelabs/roshi-site",
   "version": "0.0.0",
-  "author": "Xavier Fuentes <me@xavierfuentes.com>",
+  "author": "Ape Labs",
+  "contributors": [
+    "Albert Vallverdu <byverdu@gmail.com>",
+    "Xavier Fuentes <me@xavierfuentes.com>"
+  ],
   "license": "MIT",
   "scripts": {
     "dev": "next",
