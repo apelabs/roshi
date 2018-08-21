@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  mongodb:
+  db:
     image: mongo
     container_name: roshi_db
     restart: always
@@ -20,65 +20,63 @@ services:
       context: ./packages/server
     env_file: ./packages/server/.env
     container_name: roshi_server
+    depends_on:
+      - db
+    volumes:
+      - ./packages/server:/usr/src/server
+      - /usr/src/server/node_modules
     ports:
       - 3030:4000
-    volumes:
-      - ./packages/server:/usr/src/app
-      - /usr/src/app/node_modules
-    links:
-      - mongodb
-    depends_on:
-      - mongodb
     command: npm run dev
 
   ui:
     build:
       context: ./packages/ui
     container_name: roshi_ui
+    volumes:
+      - ./packages/ui:/usr/src/ui
+      - /usr/src/ui/node_modules
     ports:
       - 4040:3000
-    volumes:
-      - ./packages/ui:/usr/src/app
-      - /usr/src/app/node_modules
     command: npm run dev
 
   # admin:
   #   build:
   #     context: ./packages/admin
   #   container_name: roshi_admin
-  #   ports:
-  #     - 5050:3000
   #   depends_on:
   #     - server
   #     - ui
+  #   volumes:
+  #     - ./packages/admin:/usr/src/admin
+  #     - /usr/src/admin/node_modules
+  #   ports:
+  #     - 5050:3000
 
   site:
     build:
       context: ./packages/site
     container_name: roshi_site
+    depends_on:
+      - server
+      - ui
+    volumes:
+      - ./packages/site:/usr/src/site
+      - /usr/src/site/node_modules
     ports:
       - 6060:3000
-    depends_on:
-      - server
-      - ui
-    volumes:
-      - ./packages/site:/usr/src/app
-      - /usr/src/app/node_modules
     command: npm run dev
 
-  webclient:
+  clientweb:
     build:
       context: ./packages/client/web
-    container_name: roshi_webclient
-    ports:
-      - 7070:3000
-    volumes:
-      - ./packages/client/web:/usr/src/app
-      - /usr/src/app/node_modules
+    container_name: roshi_clientweb
     depends_on:
       - server
       - ui
-    links:
-      - server
+    volumes:
+      - ./packages/client/web:/usr/src/clientweb
+      - /usr/src/clientweb/node_modules
+    ports:
+      - 7070:3000
     command: npm run dev
-

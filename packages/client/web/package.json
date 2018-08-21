@@ -1,11 +1,11 @@
 {
-  "name": "@apelabs/roshi-webclient",
+  "name": "@apelabs/roshi-clientweb",
   "version": "0.1.0",
   "author": "Xavier Fuentes <me@xavierfuentes.com>",
   "private": true,
   "proxy": {
     "/api": {
-      "target": "http://hubert_server:4000",
+      "target": "http://roshi_server:4000",
       "pathRewrite": {
         "^/api": "/"
       }
