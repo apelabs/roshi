@@ -4,7 +4,7 @@ const { createUser, getUser, getAllUsers } = require('../controllers');
 module.exports = {
   Query: {
     user: (root, args) => getUser(args),
-    users: (root, args) => getAllUsers(args),
+    users: getAllUsers,
   },
 
   Mutation: {

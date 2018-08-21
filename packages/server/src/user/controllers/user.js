@@ -5,18 +5,14 @@ async function getUser({ id }) {
 }
 
 async function getAllUsers() {
-  const users = await User.find({});
-  return users;
+  return await User.find({});
 }
 
 async function createUser({ ...user }) {
   return await new User(user).save();
 }
 
-async function updateUser(id) {
-  // return User.updateOne({ id: id }, ...)
-  // return User.findOneAndUpdate({ id: id }, ...)
-}
+async function updateUser({ ...user }) {}
 
 async function deleteUser() {
   return await User.deleteOne({ id: args.id });

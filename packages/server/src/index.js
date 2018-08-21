@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const { ApolloServer } = require('apollo-server');
-const crypto = require('crypto');
 const mongoose = require('mongoose');
 
 const { typeDefs, resolvers } = require('./schema');
