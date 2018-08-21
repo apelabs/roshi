@@ -1,13 +1,15 @@
 const { User } = require('../models');
-const { createUser, getUser, getAllUsers } = require('../controllers');
+const { createUser, deleteUser, getUser, getAllUsers, updateUser } = require('../controllers');
 
 module.exports = {
   Query: {
-    user: (root, args) => getUser(args),
+    user: (obj, args) => getUser(args),
     users: getAllUsers,
   },
 
   Mutation: {
-    createUser: (root, args) => createUser(args),
+    createUser: (obj, args) => createUser(args),
+    deleteUser: (obj, args) => deleteUser(args),
+    updateUser: (obj, args) => updateUser(args),
   },
 };
