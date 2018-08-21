@@ -1,22 +1,35 @@
 const { gql } = require('apollo-server');
+const merge = require('lodash/merge');
+
 const { User } = require('./user/models');
 
 const user = require('./user');
 
-const base = gql`
+const rootTypes = gql`
+  """
+  Root queries to be extended from
+  """
   type Query {
-    _empty: String
+    """
+    Health Check
+    """
+    hello: String
   }
-
   type Mutation {
     _empty: String
   }
 `;
 
+const rootResolvers = {
+  Query: {
+    hello: () => `it's alive!`,
+  },
+};
+
 module.exports = {
   typeDefs: [
-    base, // in order to use 'extend' on other typeDefs
+    rootTypes, // in order to use 'extend' on other typeDefs
     user.typeDefs,
   ],
-  resolvers: Object.assign({}, user.resolvers),
+  resolvers: merge({}, rootResolvers, user.resolvers),
 };
