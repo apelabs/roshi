@@ -1,14 +1,11 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 const SALT_WORK_FACTOR = 10;
 
 const UserSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      required: true,
-    },
+    firstName: String,
     lastName: String,
     email: {
       type: String,

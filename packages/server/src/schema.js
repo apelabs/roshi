@@ -3,7 +3,7 @@ const merge = require('lodash/merge');
 
 const { User } = require('./user/models');
 
-const user = require('./user');
+const userModule = require('./user');
 
 const rootTypes = gql`
   """
@@ -29,7 +29,7 @@ const rootResolvers = {
 module.exports = {
   typeDefs: [
     rootTypes, // in order to use 'extend' on other typeDefs
-    user.typeDefs,
+    userModule.typeDefs,
   ],
-  resolvers: merge({}, rootResolvers, user.resolvers),
+  resolvers: merge({}, rootResolvers, userModule.resolvers),
 };
