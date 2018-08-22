@@ -9,15 +9,33 @@
   "private": true,
   "main": "build/index.js",
   "dependencies": {
+    "emotion": "^9.2.6",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4"
+    "react-emotion": "^9.2.6",
+    "react-scripts": "1.1.4",
+    "rebass": "^2.0.0-10",
+    "styled-components": "^3.4.4"
   },
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "postinstall": "react-scripts build"
+    "postinstall": "react-scripts build",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.4.10",
+    "@storybook/addon-links": "^3.4.10",
+    "@storybook/addon-storyshots": "^3.4.10",
+    "@storybook/addons": "^3.4.10",
+    "@storybook/react": "^3.4.10",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-16": "^1.2.0",
+    "react-test-renderer": "^16.4.2"
   }
 }
