@@ -3,13 +3,13 @@ const { createUser, deleteUser, getUser, getAllUsers, updateUser } = require('..
 
 module.exports = {
   Query: {
-    user: (obj, args) => getUser(args),
+    user: (root, { id }) => getUser(id),
     users: getAllUsers,
   },
 
   Mutation: {
-    createUser: (obj, args) => createUser(args),
-    deleteUser: (obj, args) => deleteUser(args),
-    updateUser: (obj, args) => updateUser(args),
+    createUser: (root, args) => createUser(args),
+    deleteUser: (root, { id }) => deleteUser(id),
+    updateUser: (root, args) => updateUser(args),
   },
 };
