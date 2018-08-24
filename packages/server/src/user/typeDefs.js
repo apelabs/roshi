@@ -10,17 +10,17 @@ module.exports = gql`
     avatarUrl: String
   }
 
-  type AuthPayload {
-    token: String
-    user: User
-  }
-
   input UserUpdate {
     firstName: String
     lastName: String
     email: String
     password: String
     avatarUrl: String
+  }
+
+  type AuthPayload {
+    token: String
+    user: User
   }
 
   extend type Query {
