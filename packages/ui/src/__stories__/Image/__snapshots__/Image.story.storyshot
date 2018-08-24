@@ -2,7 +2,7 @@
 
 exports[`Storyshots Image with src 1`] = `
 <img
-  className="css-1f30jn7 sc-cvbbAY exTuBk"
+  className="css-qm6gfa sc-cvbbAY exTuBk"
   src="http://any"
 />
 `;
