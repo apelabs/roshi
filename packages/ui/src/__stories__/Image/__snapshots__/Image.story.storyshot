@@ -1,8 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Image with src 1`] = `
+exports[`Storyshots Image with extra styles 1`] = `
 <img
-  className="css-qm6gfa sc-cvbbAY exTuBk"
-  src="http://any"
+  className="css-hr5p6o"
+  src="https://bit.ly/2wwKsKD"
+  style={
+    Object {
+      "transform": "rotate(45deg)",
+    }
+  }
+/>
+`;
+
+exports[`Storyshots Image with width 1`] = `
+<img
+  className="css-14bsjy6"
+  src="https://bit.ly/2wwKsKD"
+/>
+`;
+
+exports[`Storyshots Image with withshadow 1`] = `
+<img
+  className="css-1g1eap0"
+  src="https://bit.ly/2wwKsKD"
+  withshadow={true}
+/>
+`;
+
+exports[`Storyshots Image with withshadow withradius 1`] = `
+<img
+  className="css-1ar4abe"
+  src="https://bit.ly/2wwKsKD"
+  withradius="50%"
+  withshadow={true}
+/>
+`;
+
+exports[`Storyshots Image without src attribute 1`] = `
+<img
+  className="css-uuiktk"
+  src="https://bit.ly/2wwKsKD"
 />
 `;
