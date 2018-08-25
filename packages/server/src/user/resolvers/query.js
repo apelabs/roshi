@@ -1,10 +1,14 @@
+const { UserInputError } = require('apollo-server');
 const { User } = require('../models');
 
-function user(parent, args, context, info) {
+function user(root, args = {}, context, info) {
+  if (!args.id) {
+    throw new UserInputError('ID missing');
+  }
   return User.findById(args.id);
 }
 
-function users(parent, args, context, info) {
+function users(root, args, context, info) {
   return User.find({});
 }
 
