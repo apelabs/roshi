@@ -37,7 +37,9 @@ services:
       - ./packages/ui:/usr/src/ui
       - /usr/src/ui/node_modules
     ports:
-      - 4040:3000
+      - 4040:9009
+      - 4050:6060
+      - 4060:3000
     command: npm run dev
 
   # admin:
