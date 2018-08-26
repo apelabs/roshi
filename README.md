@@ -16,6 +16,9 @@ Once Docker's installed and set up:
 
 > The mongodb can be accessed from [http://localhost:2020](http://localhost:2020)
 > The server can be accessed from [http://localhost:3030](http://localhost:3030)
+> The StorybookJS server can be accessed from [http://localhost:4040](http://localhost:4040)
+> The Styleguidist server can be accessed from [http://localhost:4050](http://localhost:4050)
+> The UI's example app can be accessed from [http://localhost:4060](http://localhost:4060)
 > The app can be accessed from [http://localhost:5050](http://localhost:5050)
 
 ## Setup without Docker
