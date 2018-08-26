@@ -18,6 +18,7 @@ exports[`Storyshots Button with text 1`] = `
 <button
   className="css-qm6gfa sc-ifAKCX guaPvx"
   onClick={[Function]}
-  text="xoxo"
-/>
+>
+  xoxo
+</button>
 `;
