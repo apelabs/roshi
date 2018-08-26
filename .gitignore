@@ -42,4 +42,9 @@ Temporary Items
 mongodump
 coverage
 **/build/*
+/build
+/dist
+/.next
 # .env
+storybook-static
+styleguide

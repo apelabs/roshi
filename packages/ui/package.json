@@ -21,15 +21,18 @@
     "styled-components": "^3.4.4"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "dev:docs": "styleguidist server",
-    "build": "react-scripts build",
+    "build": "build-storybook -s public && styleguidist build && react-scripts build",
+    "build:app": "react-scripts build",
     "build:docs": "styleguidist build",
-    "test": "react-scripts test --env=jsdom",
+    "build:stories": "build-storybook -s public",
+    "dev": "concurrently 'start-storybook -p 9009 -s public' 'styleguidist server' 'react-scripts start'",
+    "dev:app": "react-scripts start",
+    "dev:stories": "start-storybook -p 9009 -s public",
+    "dev:docs": "styleguidist server",
     "eject": "react-scripts eject",
-    "postinstall": "react-scripts build",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "postinstall": "build-storybook -s public && styleguidist build && react-scripts build",
+    "start": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.10",
@@ -39,6 +42,7 @@
     "@storybook/react": "^3.4.10",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
+    "concurrently": "^4.0.0",
     "enzyme": "^3.4.4",
     "enzyme-adapter-react-16": "^1.2.0",
     "react-test-renderer": "^16.4.2"

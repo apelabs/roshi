@@ -14,5 +14,5 @@ RUN npm install --quiet
 # Bundle app source
 COPY . /usr/src/ui
 
-EXPOSE 3000
+EXPOSE 9009 6060 3000
 CMD [ "npm", "run", "dev" ]
