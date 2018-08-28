@@ -21,17 +21,15 @@
     "styled-components": "^3.4.4"
   },
   "scripts": {
-    "build": "build-storybook -s public && styleguidist build && react-scripts build",
-    "build:app": "react-scripts build",
-    "build:docs": "styleguidist build",
+    "build": "yarn build:stories && yarn build:docs && yarn build:app",
     "build:stories": "build-storybook -s public",
-    "dev": "concurrently 'start-storybook -p 9009 -s public' 'styleguidist server' 'react-scripts start'",
-    "dev:app": "react-scripts start",
+    "build:docs": "styleguidist build",
+    "build:app": "rm -rf build && NODE_ENV=production babel src/ --out-dir build --copy-files --ignore __stories__,__tests__,spec.js,test.js,__snapshots__",
+    "dev": "concurrently 'yarn dev:stories' 'yarn dev:docs' 'yarn build:app'",
     "dev:stories": "start-storybook -p 9009 -s public",
     "dev:docs": "styleguidist server",
     "eject": "react-scripts eject",
-    "postinstall": "build-storybook -s public && styleguidist build && react-scripts build",
-    "start": "react-scripts test --env=jsdom",
+    "postinstall": "yarn build",
     "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
@@ -41,6 +39,7 @@
     "@storybook/addons": "^3.4.10",
     "@storybook/react": "^3.4.10",
     "babel-core": "^6.26.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "concurrently": "^4.0.0",
     "enzyme": "^3.4.4",

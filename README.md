@@ -21,7 +21,6 @@ Once Docker's installed and set up:
 > The server can be accessed from [http://localhost:3030](http://localhost:3030)<br/>
 > The StorybookJS server can be accessed from [http://localhost:4040](http://localhost:4040)<br/>
 > The Styleguidist server can be accessed from [http://localhost:4050](http://localhost:4050)<br/>
-> The UI's example app can be accessed from [http://localhost:4060](http://localhost:4060)<br/>
 > The app can be accessed from [http://localhost:7070](http://localhost:7070)<br/>
 
 ## DB

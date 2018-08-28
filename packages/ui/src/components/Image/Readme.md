@@ -8,6 +8,7 @@
 
 ```js
 <Image width={200} src='https://bit.ly/2LrxeUV' />
+
 <Image width={100} src='https://bit.ly/2LrxeUV' />
 ```
 
