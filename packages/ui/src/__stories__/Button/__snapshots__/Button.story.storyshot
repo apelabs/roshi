@@ -2,21 +2,16 @@
 
 exports[`Storyshots Button with some emoji 1`] = `
 <button
-  className="css-qm6gfa sc-ifAKCX guaPvx"
+  className="css-1iidv1d sc-ifAKCX bGvnLz"
   onClick={[Function]}
 >
-  <span
-    aria-label="so cool"
-    role="img"
-  >
-    😀 😎 👍 💯
-  </span>
+  C
 </button>
 `;
 
 exports[`Storyshots Button with text 1`] = `
 <button
-  className="css-qm6gfa sc-ifAKCX guaPvx"
+  className="css-17uq09k sc-ifAKCX bGvnLz"
   onClick={[Function]}
 >
   xoxo

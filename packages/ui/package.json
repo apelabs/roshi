@@ -24,7 +24,7 @@
     "build": "yarn build:stories && yarn build:docs && yarn build:app",
     "build:stories": "build-storybook -s public",
     "build:docs": "styleguidist build",
-    "build:app": "rm -rf build && NODE_ENV=production babel src/ --out-dir build --copy-files --ignore __stories__,__tests__,spec.js,test.js,__snapshots__",
+    "build:app": "rm -rf build && NODE_ENV=production babel src/ --out-dir build --copy-files --watch --ignore __stories__,__tests__,spec.js,test.js,__snapshots__",
     "dev": "concurrently 'yarn dev:stories' 'yarn dev:docs' 'yarn build:app'",
     "dev:stories": "start-storybook -p 9009 -s public",
     "dev:docs": "styleguidist server",

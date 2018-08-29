@@ -1,4 +1,2 @@
-import Image from './components/Image';
-import Button from './components/Button';
-
-export { Image, Button };
+export Image from './components/Image';
+export Button from './components/Button';

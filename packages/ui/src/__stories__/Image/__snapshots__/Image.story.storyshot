@@ -2,7 +2,7 @@
 
 exports[`Storyshots Image with extra styles 1`] = `
 <img
-  className="css-hr5p6o"
+  className="css-db6khz"
   src="https://bit.ly/2wwKsKD"
   style={
     Object {
@@ -14,14 +14,14 @@ exports[`Storyshots Image with extra styles 1`] = `
 
 exports[`Storyshots Image with width 1`] = `
 <img
-  className="css-14bsjy6"
+  className="css-nia9ss"
   src="https://bit.ly/2wwKsKD"
 />
 `;
 
 exports[`Storyshots Image with withshadow 1`] = `
 <img
-  className="css-1g1eap0"
+  className="css-1m93pep"
   src="https://bit.ly/2wwKsKD"
   withshadow={true}
 />
@@ -38,7 +38,7 @@ exports[`Storyshots Image with withshadow withradius 1`] = `
 
 exports[`Storyshots Image without src attribute 1`] = `
 <img
-  className="css-uuiktk"
+  className="css-1p7prg0"
   src="https://bit.ly/2wwKsKD"
 />
 `;

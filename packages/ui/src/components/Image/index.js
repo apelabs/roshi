@@ -3,25 +3,28 @@ import PropTypes from 'prop-types';
 import styled from 'react-emotion';
 import { Image as Base } from 'rebass/emotion';
 
+const StyledImage = styled(Base)(styleProps => {
+  const { withshadow, withradius } = styleProps;
+
+  return {
+    boxShadow: withshadow ? '0 0 1px rgba(0, 0, 0, .8)' : '',
+    borderRadius: withradius ? withradius : '',
+    ...styleProps,
+  };
+});
+
 /**
  * [Rebass Image Component](http://jxnblk.com/rebass/components/Image)
  *
  * @visibleName Image
  */
-const Image = ({ withshadow, withradius, ...oldProps }) => {
+const Image = ({ newProps, ...oldProps }) => {
   const props = {
-    withshadow,
-    withradius,
+    ...newProps,
     ...oldProps,
   };
 
-  const Img = styled(Base)(styleProps => ({
-    boxShadow: withshadow ? '0 0 1px rgba(0, 0, 0, .8)' : '',
-    borderRadius: withradius ? withradius : '',
-    ...styleProps,
-  }));
-
-  return <Img {...props} />;
+  return <StyledImage {...props} />;
 };
 
 Image.propTypes = {
@@ -38,8 +41,6 @@ Image.propTypes = {
 Image.defaultProps = {
   src: 'https://bit.ly/2wwKsKD',
 };
-
-// Image.displayName = 'RebassWrapperImage';
 
 /** @component */
 export default Image;

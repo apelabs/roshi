@@ -5,12 +5,12 @@ import { linkTo } from '@storybook/addon-links';
 
 import Button from '../../components/Button';
 
-storiesOf('Button', module)
-  .add('with text', () => <Button onClick={action('clicked')} children="xoxo" />)
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
-  ));
+const c = () => (
+  <span role="img" aria-label="so cool">
+    😀 😎 👍 💯
+  </span>
+);
+
+storiesOf('Button', module).add('with text', () => (
+  <Button onClick={action('clicked')} children="xoxo" />
+));
