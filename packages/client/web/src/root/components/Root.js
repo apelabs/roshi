@@ -4,6 +4,7 @@ import './Root.css';
 
 import { Image } from '@apelabs/roshi-ui';
 import { Button } from '@apelabs/roshi-ui';
+import { InputWithLabel } from '@apelabs/roshi-ui';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
           <Image />
           <Button onClick={() => console.log('akakka')} children="logo.svg" />
+          <InputWithLabel labeltext="Hello World" />
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
