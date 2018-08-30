@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots InputWithLabel with extra styles for input 1`] = `
+<label
+  className="css-a4ui92 sc-jKJlTe bGZhkL"
+>
+  hello there
+  <input
+    className="css-18rrgwl sc-eNQAEJ IYpCQ"
+    inputprops={
+      Object {
+        "border": "4px solid red",
+      }
+    }
+    placeholder="Type something"
+    type="text"
+  />
+</label>
+`;
+
+exports[`Storyshots InputWithLabel with extra styles for label 1`] = `
+<label
+  className="css-to0721 sc-jKJlTe bGZhkL"
+  labelprops={
+    Object {
+      "border": "4px solid green",
+    }
+  }
+>
+  hello there
+  <input
+    className="css-kgitkj sc-eNQAEJ IYpCQ"
+    placeholder="Type something"
+    type="text"
+  />
+</label>
+`;
+
+exports[`Storyshots InputWithLabel with type attribute 1`] = `
+<label
+  className="css-a4ui92 sc-jKJlTe bGZhkL"
+>
+  hello there
+  <input
+    className="css-kgitkj sc-eNQAEJ IYpCQ"
+    placeholder="Type something"
+    type="password"
+  />
+</label>
+`;
+
+exports[`Storyshots InputWithLabel without type attribute 1`] = `
+<label
+  className="css-a4ui92 sc-jKJlTe bGZhkL"
+>
+  hello there
+  <input
+    className="css-kgitkj sc-eNQAEJ IYpCQ"
+    placeholder="Type something"
+    type="text"
+  />
+</label>
+`;

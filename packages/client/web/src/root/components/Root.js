@@ -15,7 +15,12 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
           <Image />
           <Button onClick={() => console.log('akakka')} children="logo.svg" />
-          <InputWithLabel labeltext="Hello World" />
+          <InputWithLabel
+            inputprops={{ border: '4px solid red' }}
+            labelprops={{ border: '4px solid green' }}
+            labeltext="Hello World"
+            placeholder="Hi there"
+          />
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.

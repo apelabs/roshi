@@ -4,14 +4,24 @@ import styled from 'react-emotion';
 import { Input as Base } from 'rebass';
 import { Label } from 'rebass';
 
-const StyledInput = styled(Base)(styleProps => ({
-  width: '50px',
-  ...styleProps,
-}));
-const StyledLabel = styled(Label)(styleProps => ({
-  fontSize: '16px',
-  color: 'black',
-}));
+const StyledInput = styled(Base)(props => {
+  const extraProps = props.inputprops ? props.inputprops : null;
+
+  return {
+    width: '50px',
+    ...extraProps,
+  };
+});
+
+const StyledLabel = styled(Label)(props => {
+  const extraProps = props.labelprops ? props.labelprops : null;
+
+  return {
+    fontSize: '16px',
+    color: 'black',
+    ...extraProps,
+  };
+});
 /**
  * [Rebass Input Component](http://jxnblk.com/rebass/components/Input)
  *
@@ -23,12 +33,12 @@ const InputWithLabel = ({ newProps, ...oldProps }) => {
     ...oldProps,
   };
 
-  const { labeltext, ...other } = props;
+  const { labeltext, inputprops, labelprops, ...otherProps } = props;
 
   return (
-    <StyledLabel>
+    <StyledLabel {...{ labelprops }}>
       {labeltext}
-      <StyledInput {...other} />
+      <StyledInput {...{ inputprops }} {...otherProps} />
     </StyledLabel>
   );
 };
@@ -38,10 +48,15 @@ InputWithLabel.propTypes = {
   type: PropTypes.string.isRequired,
   /** Text for label component **/
   labeltext: PropTypes.string.isRequired,
+  /** Extra styles for input element **/
+  inputprops: PropTypes.object,
+  /** Extra styles for label element **/
+  labelprops: PropTypes.object,
 };
 
 InputWithLabel.defaultProps = {
   type: 'text',
+  placeholder: 'Type something',
 };
 
 /** @component */
