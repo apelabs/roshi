@@ -1,16 +1,15 @@
 {
-  "name": "@apelabs/roshi-site",
+  "name": "@roshi/site",
   "version": "0.0.0",
-  "author": "Ape Labs",
+  "author": "ApeLabs",
   "contributors": [
     "Albert Vallverdu <byverdu@gmail.com>",
     "Xavier Fuentes <me@xavierfuentes.com>"
   ],
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 8080",
     "build": "next build",
-    "postinstall": "next build",
     "start": "next start"
   },
   "dependencies": {

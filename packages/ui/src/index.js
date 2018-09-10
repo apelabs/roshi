@@ -1,3 +1,3 @@
-export Image from './components/Image';
-export Button from './components/Button';
-export InputWithLabel from './components/InputWithLabel';
+export { default as Image } from './components/Image/Image';
+export { default as Button } from './components/Button/Button';
+export { default as InputWithLabel } from './components/InputWithLabel/InputWithLabel';

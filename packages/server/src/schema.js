@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server');
 const merge = require('lodash/merge');
 
-const { User } = require('./user/models');
+const { User } = require('./user/model');
 
 const userModule = require('./user');
 

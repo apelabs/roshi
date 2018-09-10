@@ -1,0 +1,24 @@
+FROM node:10.9
+
+WORKDIR /usr/src/app
+
+RUN npm install -g lerna
+
+# http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/
+COPY package.json .
+
+RUN npm install --quiet --unsafe-perm
+
+COPY packages/ui ./packages/ui
+EXPOSE 9009 6060
+# COPY packages/admin ./packages/admin
+# EXPOSE 4000
+COPY packages/site ./packages/site
+EXPOSE 8080
+COPY packages/client-web ./packages/client-web
+EXPOSE 3000
+
+COPY lerna.json .
+RUN lerna bootstrap
+
+CMD [ "yarn", "dev:frontend" ]

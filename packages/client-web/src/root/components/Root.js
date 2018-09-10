@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './Root.css';
 
-import { Image } from '@apelabs/roshi-ui';
-import { Button } from '@apelabs/roshi-ui';
-import { InputWithLabel } from '@apelabs/roshi-ui';
+import { Image, Button, InputWithLabel } from '@roshi/ui';
 
 class App extends Component {
   render() {

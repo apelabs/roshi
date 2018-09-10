@@ -2,12 +2,12 @@ const { AuthenticationError } = require('apollo-server');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-const { User } = require('../models');
+const User = require('../model');
 
 async function authenticateUser(root, args, context, info) {
   const user = await User.findOne({ email: args.email });
   if (!user) {
-    throw new AuthenticationError('No such user found');
+    throw new AuthenticationError('No user found');
   }
 
   const valid = await bcrypt.compare(args.password, user.password);
@@ -15,7 +15,7 @@ async function authenticateUser(root, args, context, info) {
     throw new AuthenticationError('Invalid password');
   }
 
-  const token = jwt.sign({ userId: user.id }, 'OldHeavenlyMartialArtsMaster');
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
 
   return {
     token,

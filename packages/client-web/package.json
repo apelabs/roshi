@@ -1,7 +1,7 @@
 {
-  "name": "@apelabs/roshi-clientweb",
+  "name": "@roshi/client-web",
   "version": "0.1.0",
-  "author": "Ape Labs",
+  "author": "ApeLabs",
   "contributors": [
     "Albert Vallverdu <byverdu@gmail.com>",
     "Xavier Fuentes <me@xavierfuentes.com>"
@@ -9,14 +9,20 @@
   "private": true,
   "proxy": {
     "/api": {
-      "target": "http://roshi_server:4000",
+      "target": "http://roshi_server:4010",
       "pathRewrite": {
         "^/api": "/"
       }
     }
   },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
-    "@apelabs/roshi-ui": "^0.1.0",
+    "@roshi/ui": "^0.1.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
@@ -24,11 +30,5 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
-  },
-  "scripts": {
-    "dev": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
   }
 }

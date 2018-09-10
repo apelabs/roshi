@@ -1,7 +1,7 @@
 {
-  "name": "@apelabs/roshi-admin",
+  "name": "@roshi/admin",
   "version": "0.0.0",
-  "author": "Ape Labs",
+  "author": "ApeLabs",
   "contributors": [
     "Albert Vallverdu <byverdu@gmail.com>",
     "Xavier Fuentes <me@xavierfuentes.com>"

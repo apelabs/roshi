@@ -2,7 +2,7 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import InputWithLabel from '../../components/InputWithLabel';
+import InputWithLabel from './InputWithLabel';
 
 storiesOf('InputWithLabel', module)
   .add('without type attribute', () => <InputWithLabel labeltext="hello there" />)

@@ -1,5 +1,5 @@
 {
-  "name": "@apelabs/roshi",
+  "name": "roshi",
   "version": "0.0.0",
   "author": "Ape Labs",
   "contributors": [
@@ -9,7 +9,9 @@
   "private": true,
   "scripts": {
     "precommit": "lint-staged",
-    "postinstall": "lerna bootstrap"
+    "dev": "concurrently 'yarn dev:backend' 'yarn dev:frontend'",
+    "dev:backend": "concurrently 'cd packages/server; yarn dev'",
+    "dev:frontend": "concurrently 'cd packages/ui; yarn dev' 'cd packages/site; yarn dev' 'cd packages/client-web; yarn dev'"
   },
   "lint-staged": {
     "*.js": [
@@ -21,6 +23,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^4.0.0",
     "husky": "^0.14.3",
     "lerna": "^2.11.0",
     "lint-staged": "^7.2.0",

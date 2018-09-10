@@ -15,13 +15,13 @@ Once Docker's installed and set up:
 1. Clone this repo.
 2. install the project's dependencies by running `npm i` or `yarn` (from the root).
 3. Run `docker-compose up --build` or `docker-compose up -d --build` if you're not interested in seeing the logs.
-4. Navigate to [http://localhost:4040](http://localhost:4040)
+4. Navigate to [http://localhost:3030](http://localhost:3030)
 
 > The mongodb can be accessed from [http://localhost:2020](http://localhost:2020)<br/>
-> The server can be accessed from [http://localhost:3030](http://localhost:3030)<br/>
-> The StorybookJS server can be accessed from [http://localhost:4040](http://localhost:4040)<br/>
-> The Styleguidist server can be accessed from [http://localhost:4050](http://localhost:4050)<br/>
-> The app can be accessed from [http://localhost:7070](http://localhost:7070)<br/>
+> The server can be accessed from [http://localhost:4010](http://localhost:4010)<br/>
+> The StorybookJS server can be accessed from [http://localhost:3010](http://localhost:3010)<br/>
+> The Styleguidist server can be accessed from [http://localhost:3020](http://localhost:3020)<br/>
+> The app can be accessed from [http://localhost:3040](http://localhost:3040)<br/>
 
 ## DB
 

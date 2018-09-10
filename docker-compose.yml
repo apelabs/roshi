@@ -15,69 +15,34 @@ services:
       MONGO_INITDB_DATABASE: kamehouse
     command: --smallfiles
 
-  server:
+  backend:
     build:
-      context: ./packages/server
-    env_file: ./packages/server/.env
-    container_name: roshi_server
+      context: .
+      dockerfile: ./Dockerfile.backend
+    container_name: roshi_backend
     depends_on:
       - db
-    volumes:
-      - ./packages/server:/usr/src/server
-      - /usr/src/server/node_modules
     ports:
-      - 3030:4000
-    command: npm run dev
-
-  ui:
-    build:
-      context: ./packages/ui
-    container_name: roshi_ui
+      - 4010:4000
     volumes:
-      - ./packages/ui:/usr/src/ui
-      - /usr/src/ui/node_modules
-    ports:
-      - 4040:9009
-      - 4050:6060
-    command: npm run dev
+      - ./packages/server:/usr/src/app/packages/server
 
-  # admin:
-  #   build:
-  #     context: ./packages/admin
-  #   container_name: roshi_admin
-  #   depends_on:
-  #     - server
-  #     - ui
-  #   volumes:
-  #     - ./packages/admin:/usr/src/admin
-  #     - /usr/src/admin/node_modules
-  #   ports:
-  #     - 5050:3000
-
-  site:
+  frontend:
     build:
-      context: ./packages/site
-    container_name: roshi_site
+      context: .
+      dockerfile: ./Dockerfile.frontend
+    container_name: roshi_frontend
     depends_on:
-      - server
-      - ui
-    volumes:
-      - ./packages/site:/usr/src/site
-      - /usr/src/site/node_modules
+      - backend
     ports:
-      - 6060:3000
-    command: npm run dev
-
-  clientweb:
-    build:
-      context: ./packages/client/web
-    container_name: roshi_clientweb
-    depends_on:
-      - server
-      - ui
+      # ui
+      - "3010:9009"
+      - "3020:6060"
+      # site
+      - "3030:8080"
+      # clientweb
+      - "3040:3000"
     volumes:
-      - ./packages/client/web:/usr/src/clientweb
-      - /usr/src/clientweb/node_modules
-    ports:
-      - 7070:3000
-    command: npm run dev
+      - ./packages/ui:/usr/src/app/packages/ui
+      - ./packages/site:/usr/src/app/packages/site
+      - ./packages/client-web:/usr/src/app/packages/client-web

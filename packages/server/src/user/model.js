@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const SALT_WORK_FACTOR = 10;
 
@@ -22,15 +23,13 @@ const UserSchema = new mongoose.Schema(
 );
 
 UserSchema.pre('save', async function preSave(next) {
-  var user = this;
-
   // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) return next();
+  if (!this.isModified('password')) return next();
 
   const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
-  const hash = await bcrypt.hash(user.password, salt);
+  const hash = await bcrypt.hash(this.password, salt);
 
-  user.password = hash;
+  this.password = hash;
   next();
 });
 

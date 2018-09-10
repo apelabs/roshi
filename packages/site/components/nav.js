@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const links = [
   { href: 'https://github.com/apelabs/roshi', label: 'Github' },
-  { href: 'http://localhost:7070', label: 'Dashboard' },
+  { href: 'http://localhost:3040', label: 'Dashboard' },
 ].map(link => {
   link.key = `nav-link-${link.href}-${link.label}`;
   return link;
