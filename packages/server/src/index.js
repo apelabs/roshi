@@ -1,44 +1,19 @@
 require('dotenv').config();
 
-const { ApolloServer, AuthenticationError } = require('apollo-server');
-const mongoose = require('mongoose');
-// const jwt = require('jsonwebtoken');
+const { MONGODB_URI, NODE_ENV = 'development', PORT = 4000 } = process.env;
+const logger = require('./logger');
+const server = require('./server');
+const { connectDatabase } = require('./database');
 
-const { typeDefs, resolvers } = require('./schema');
+(async () => {
+  try {
+    await connectDatabase(MONGODB_URI, NODE_ENV !== 'production');
+  } catch (error) {
+    logger.error('Could not connect to database', { error });
+    throw error;
+  }
 
-mongoose.set('debug', process.env.NODE_ENV !== 'production');
+  const { url } = await server.listen(PORT);
 
-async function startServer() {
-  await mongoose.connect(
-    process.env.MONGODB_URI,
-    { useNewUrlParser: true }
-  );
-
-  const serverInfo = await new ApolloServer({
-    typeDefs,
-    resolvers,
-    // context: async ({ headers = {} }) => {
-    //   const { authorization = '' } = headers;
-    //   const decoded = jwt.verify(authorization, process.env.JWT_SECRET);
-    //   console.dir(decoded, { depth: null });
-    //   // const user = User.findByToken(authorization);
-    //   return {};
-
-    //   if (!user) {
-    //     throw new AuthorizationError('you must be logged in');
-    //   }
-    //   return { user };
-    // },
-    playground: {
-      settings: {
-        'editor.theme': 'light',
-        'editor.cursorShape': 'line',
-      },
-    },
-    // formatError: error => {}, // todo: add logger?
-    // formatResponse: error => {}, // customise responses' format?
-  }).listen();
-  console.log(`🚀  Server ready at ${serverInfo.url}`);
-}
-
-startServer().catch(error => console.error(error.stack));
+  logger.info(`🚀 Server ready at ${url}/graphql`);
+})();

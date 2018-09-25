@@ -1,25 +1,22 @@
 {
   "name": "@roshi/server",
-  "version": "0.0.0",
-  "author": "ApeLabs",
+  "version": "0.1.0",
+  "author": "TAB",
   "contributors": [
-    "Albert Vallverdu <byverdu@gmail.com>",
-    "Xavier Fuentes <me@xavierfuentes.com>"
+    "Xavier Fuentes <xavier.fuentes@theappbusiness.com>"
   ],
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src",
-    "start": "node src"
+    "dev": "nodemon --inspect=0.0.0.0 src"
   },
   "dependencies": {
-    "apollo-server": "^2.0.4",
+    "apollo-server": "^2.0.7",
     "bcryptjs": "^2.4.3",
     "dotenv": "^6.0.0",
-    "express": "^4.16.3",
     "graphql": "^0.13.2",
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.10",
     "mongoose": "^5.2.9",
-    "nodemon": "^1.18.3"
+    "winston": "^3.1.0"
   }
 }

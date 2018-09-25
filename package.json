@@ -9,9 +9,8 @@
   "private": true,
   "scripts": {
     "precommit": "lint-staged",
-    "dev": "concurrently 'yarn dev:backend' 'yarn dev:frontend'",
-    "dev:backend": "concurrently 'cd packages/server; yarn dev'",
-    "dev:frontend": "concurrently 'cd packages/ui; yarn dev' 'cd packages/site; yarn dev' 'cd packages/client-web; yarn dev'"
+    "dev:backend": "cd packages/server; yarn dev",
+    "dev:frontend": "concurrently -r 'yarn --cwd packages/ui dev' 'yarn --cwd packages/site dev' 'yarn --cwd packages/client-web dev'"
   },
   "lint-staged": {
     "*.js": [
@@ -27,6 +26,7 @@
     "husky": "^0.14.3",
     "lerna": "^2.11.0",
     "lint-staged": "^7.2.0",
+    "nodemon": "^1.18.3",
     "prettier": "^1.13.7"
   }
 }

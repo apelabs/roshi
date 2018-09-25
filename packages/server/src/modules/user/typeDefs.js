@@ -1,8 +1,10 @@
 const { gql } = require('apollo-server');
 
+const { READ_ANY, READ_OWN } = require('./scopes');
+
 module.exports = gql`
   type User {
-    id: ID!
+    id: ID! @unique
     firstName: String
     lastName: String
     email: String!
@@ -19,19 +21,19 @@ module.exports = gql`
   }
 
   type AuthPayload {
-    token: String
-    user: User
+    token: String!
+    user: User!
   }
 
   extend type Query {
-    users: [User!]!
-    user(id: ID!): User!
+    users: [User!]! @auth(scope: [${READ_ANY}])
+    user(id: ID!): User! @auth(scope: [${READ_ANY}, ${READ_OWN}])
   }
 
   extend type Mutation {
-    createUser(email: String!, password: String): User!
+    createUser(email: String!, password: String): AuthPayload!
     deleteUser(id: ID!): User
     updateUser(id: ID!, update: UserUpdate!): User!
-    authenticateUser(email: String!, password: String!): AuthPayload
+    authenticateUser(email: String!, password: String!): AuthPayload!
   }
 `;

@@ -1,18 +1,18 @@
-FROM node:10.9
+FROM node:10-alpine
 
 WORKDIR /usr/src/app
 
-RUN npm install -g lerna
+RUN yarn global add lerna
 
-# http://bitjudo.com/blog/2014/03/13/building-efficient-dockerfiles-node-dot-js/
-COPY package.json .
+COPY ./package.json .
+# COPY yarn.lock .
+RUN yarn install --no-lockfile
 
-RUN npm install --quiet --unsafe-perm
-
-COPY packages/server ./packages/server
-EXPOSE 4000
+COPY ./packages/server /usr/src/app/packages/server
+EXPOSE 4000 9229 9230
 
 COPY lerna.json .
+# https://github.com/lerna/lerna/issues/1457
 RUN lerna bootstrap
 
-CMD [ "yarn", "dev:backend" ]
+CMD ["yarn", "dev:backend"]

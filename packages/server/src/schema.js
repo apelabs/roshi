@@ -1,9 +1,9 @@
 const { gql } = require('apollo-server');
 const merge = require('lodash/merge');
 
-const { User } = require('./user/model');
+const { User } = require('./modules/user/model');
 
-const userModule = require('./user');
+const userModule = require('./modules/user');
 
 const rootTypes = gql`
   """
@@ -15,6 +15,7 @@ const rootTypes = gql`
     """
     hello: String
   }
+
   type Mutation {
     _empty: String
   }

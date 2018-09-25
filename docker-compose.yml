@@ -24,8 +24,12 @@ services:
       - db
     ports:
       - 4010:4000
+      - 9229:9229
+      - 9230:9230
     volumes:
+      - ./packages/server/package.json:/usr/src/app/packages/server/package.json
       - ./packages/server:/usr/src/app/packages/server
+      - /usr/src/app/packages/server/node_modules
 
   frontend:
     build:
@@ -43,6 +47,12 @@ services:
       # clientweb
       - "3040:3000"
     volumes:
+      - ./packages/ui/package.json:/usr/src/app/packages/ui/package.json
       - ./packages/ui:/usr/src/app/packages/ui
-      - ./packages/site:/usr/src/app/packages/site
+      - /usr/src/app/packages/ui/node_modules
+      - ./packages/site/package.json:/usr/src/app/packages/site/package.json
+      - ./packages/SITE:/usr/src/app/packages/SITE
+      - /usr/src/app/packages/site/node_modules
+      - ./packages/client-web/package.json:/usr/src/app/packages/client-web/package.json
       - ./packages/client-web:/usr/src/app/packages/client-web
+      - /usr/src/app/packages/client-web/node_modules
