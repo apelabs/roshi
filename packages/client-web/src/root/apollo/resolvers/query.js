@@ -4,6 +4,7 @@ const GET_CLIENT_USER = gql`
   {
     user @client {
       email
+      id
     }
     kwonUser @client
   }
