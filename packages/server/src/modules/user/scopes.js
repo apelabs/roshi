@@ -1,9 +1,9 @@
 module.exports = {
-  CREATE_ANY: 'user_create_any',
-  READ_OWN: 'user_read_own',
-  READ_ANY: 'user_read_any',
-  UPDATE_OWN: 'user_update_own',
-  UPDATE_ANY: 'user_update_any',
-  DELETE_OWN: 'user_delete_own',
-  DELETE_ANY: 'user_delete_any',
+  USER_CREATE_ANY: 'user_create_any',
+  USER_READ_OWN: 'user_read_own',
+  USER_READ_ANY: 'user_read_any',
+  USER_UPDATE_OWN: 'user_update_own',
+  USER_UPDATE_ANY: 'user_update_any',
+  USER_DELETE_OWN: 'user_delete_own',
+  USER_DELETE_ANY: 'user_delete_any',
 };

@@ -22,10 +22,10 @@ const UserSchema = new mongoose.Schema(
     scopes: {
       type: [String],
       default: [
-        SCOPES.CREATE_ANY_USER,
-        SCOPES.READ_OWN_USER,
-        SCOPES.UPDATE_OWN_USER,
-        SCOPES.UPDATE_OWN_USER,
+        SCOPES.USER_CREATE_ANY,
+        SCOPES.USER_READ_OWN,
+        SCOPES.USER_UPDATE_OWN,
+        SCOPES.USER_UPDATE_OWN,
       ],
     },
     avatarUrl: String,
