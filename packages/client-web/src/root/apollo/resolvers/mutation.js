@@ -18,6 +18,9 @@ const CREATE_USER = gql`
       user {
         email
         id
+        firstName
+        lastName
+        avatarUrl
       }
     }
   }
@@ -29,6 +32,9 @@ const AUTHENTICATE_USER = gql`
       user {
         email
         id
+        firstName
+        lastName
+        avatarUrl
       }
     }
   }

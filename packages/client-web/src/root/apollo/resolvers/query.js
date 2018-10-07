@@ -10,4 +10,15 @@ const GET_CLIENT_USER = gql`
   }
 `;
 
-export { GET_CLIENT_USER };
+const GET_CLIENT_USER_DETAILS = gql`
+  {
+    user @client {
+      email
+      firstName
+      lastName
+      avatarUrl
+    }
+  }
+`;
+
+export { GET_CLIENT_USER, GET_CLIENT_USER_DETAILS };

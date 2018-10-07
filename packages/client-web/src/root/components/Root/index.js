@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Authentication from '../Authentication';
+import Profile from '../Profile';
 import { Query } from 'react-apollo';
-import { withApollo } from 'react-apollo';
-import gql from 'graphql-tag';
 
 import logo from './logo.svg';
 import './Root.css';
@@ -13,7 +12,6 @@ const greetingMessage = kwonUser => (kwonUser ? 'Welcome back' : 'New user regis
 
 class App extends Component {
   render() {
-    this.props;
     return (
       <Query query={queries.GET_CLIENT_USER}>
         {({ data: { user, kwonUser } }) => (
@@ -25,6 +23,7 @@ class App extends Component {
             <p className="App-intro">
               <Authentication />
               {user && `${greetingMessage(kwonUser)} ${user.email}`}
+              {user && user.id && <Profile />}
             </p>
           </div>
         )}
@@ -33,4 +32,4 @@ class App extends Component {
   }
 }
 
-export default withApollo(App);
+export default App;
