@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Authentication from '../Authentication';
 import Profile from '../Profile';
+import RouterHeader from '../RouterHeader';
 import { Query } from 'react-apollo';
 
 import logo from './logo.svg';
@@ -18,7 +19,8 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">Welcome to React</h1>
+              <h1 className="App-title">Welcome to Roshi</h1>
+              <RouterHeader />
             </header>
             <p className="App-intro">
               <Authentication />
