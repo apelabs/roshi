@@ -17,7 +17,6 @@ const CreateUser = () => {
       update={(cache, result) => {
         cache.writeData({
           data: {
-            kwonUser: false,
             user: result.data.createUser.user,
           },
         });

@@ -12,6 +12,7 @@ const GET_CLIENT_USER = gql`
 const GET_CLIENT_USER_DETAILS = gql`
   {
     user @client {
+      id
       email
       firstName
       lastName

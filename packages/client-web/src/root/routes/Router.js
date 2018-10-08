@@ -1,9 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Home from './Home';
 import AuthenticateUser from './AuthenticateUser';
 import CreateUser from './CreateUser';
-import Home from './Home';
 import Profile from './Profile';
+import UpdateUser from './UpdateUser';
 
 const RoshiRouter = () => (
   <Switch>
@@ -11,6 +12,7 @@ const RoshiRouter = () => (
     <Route exact path="/login" component={AuthenticateUser} />
     <Route exact path="/register" component={CreateUser} />
     <Route exact path="/profile" component={Profile} />
+    <Route exact path="/profile/edit" component={UpdateUser} />
   </Switch>
 );
 

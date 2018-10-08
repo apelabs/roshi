@@ -40,4 +40,12 @@ const AUTHENTICATE_USER = gql`
   }
 `;
 
-export { CREATE_USER, AUTHENTICATE_USER };
+const UPDATE_USER = gql`
+  mutation UpdateUser($id: ID!, $update: UserUpdate!) {
+    updateUser(id: $id, update: $update) {
+      email
+    }
+  }
+`;
+
+export { CREATE_USER, AUTHENTICATE_USER, UPDATE_USER };

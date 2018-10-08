@@ -19,9 +19,9 @@ class App extends Component {
               <h1 className="App-title">Welcome to Roshi</h1>
               <RouterHeader loggedUser={user && user.id} />
             </header>
-            <p className="App-intro">
+            <div className="App-intro">
               <RoshiRouter />
-            </p>
+            </div>
           </div>
         )}
       </Query>
