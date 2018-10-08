@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import AuthenticateUser from '../components/Authentication/AuthenticateUser';
-import CreateUser from '../components/Authentication/CreateUser';
+import AuthenticateUser from './AuthenticateUser';
+import CreateUser from './CreateUser';
 import Home from './Home';
-import Profile from '../components/Profile';
+import Profile from './Profile';
 
 const RoshiRouter = () => (
   <Switch>

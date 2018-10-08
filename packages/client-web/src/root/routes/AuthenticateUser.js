@@ -1,7 +1,7 @@
 import React, { Fragment, createRef } from 'react';
 import { Mutation } from 'react-apollo';
 
-const mutations = require('../../apollo/resolvers').Mutation;
+const mutations = require('../apollo/resolvers').Mutation;
 
 const AuthenticateUser = () => {
   const emailInput = createRef();
@@ -13,7 +13,6 @@ const AuthenticateUser = () => {
       update={(cache, result) => {
         cache.writeData({
           data: {
-            kwonUser: true,
             user: result.data.authenticateUser.user,
           },
         });

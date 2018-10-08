@@ -1,7 +1,7 @@
 import React, { Fragment, createRef } from 'react';
 import { Mutation } from 'react-apollo';
 
-const mutations = require('../../apollo/resolvers').Mutation;
+const mutations = require('../apollo/resolvers').Mutation;
 
 const CreateUser = () => {
   const emailInput = createRef();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 
-const queries = require('../../apollo/resolvers').Query;
+const queries = require('../apollo/resolvers').Query;
 
 const liBuilder = user => Object.keys(user).map(prop => <li>{`${prop}: ${user[prop]}`}</li>);
 
