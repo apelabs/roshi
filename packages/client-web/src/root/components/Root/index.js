@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Authentication from '../Authentication';
 import Profile from '../Profile';
 import RouterHeader from '../RouterHeader';
+import RoshiRouter from '../../routes/Router';
 import { Query } from 'react-apollo';
 
 import logo from './logo.svg';
@@ -23,9 +24,10 @@ class App extends Component {
               <RouterHeader />
             </header>
             <p className="App-intro">
-              <Authentication />
+              <RoshiRouter />
+              {/* <Authentication />
               {user && `${greetingMessage(kwonUser)} ${user.email}`}
-              {user && user.id && <Profile />}
+              {user && user.id && <Profile />} */}
             </p>
           </div>
         )}
