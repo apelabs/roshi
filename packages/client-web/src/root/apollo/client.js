@@ -12,7 +12,6 @@ const httpLink = new HttpLink({
 const cache = new InMemoryCache();
 
 const defaults = {
-  kwonUser: false,
   user: undefined,
 };
 

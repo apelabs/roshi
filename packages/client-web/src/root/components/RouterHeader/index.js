@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-const linkBuilder = () => {
-  const links = {
+const linkBuilder = loggedUser => {
+  let links = {
     home: {
       text: 'Home',
       path: '/',
@@ -18,9 +18,26 @@ const linkBuilder = () => {
     },
   };
 
-  return Object.keys(links).map(link => <Link to={links[link].path}>{links[link].text}</Link>);
+  const profile = {
+    text: 'Profile',
+    path: '/profile',
+  };
+
+  if (loggedUser) {
+    links = { ...links, profile };
+  }
+
+  return Object.keys(links).map(link => {
+    const { path, text } = links[link];
+
+    return (
+      <Link key={text} to={path}>
+        {text}
+      </Link>
+    );
+  });
 };
 
-const RouterHeader = () => <nav>{linkBuilder()}</nav>;
+const RouterHeader = ({ loggedUser }) => <nav>{linkBuilder(loggedUser)}</nav>;
 
 export default withRouter(RouterHeader);

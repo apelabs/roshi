@@ -6,7 +6,6 @@ const GET_CLIENT_USER = gql`
       email
       id
     }
-    kwonUser @client
   }
 `;
 
