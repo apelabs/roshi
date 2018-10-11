@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RouterHeader from '../RouterHeader';
-import RoshiRouter from '../../routes/Router';
+import RoshiRouter from '../../routes/RoshiRouter';
 import { Query } from 'react-apollo';
 
 import logo from './logo.svg';
