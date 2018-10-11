@@ -1,6 +1,5 @@
 import React, { createRef } from 'react';
-import { Mutation } from 'react-apollo';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 
 import UpdateUserForm from '../components/Forms/UpdateUserForm';
 
