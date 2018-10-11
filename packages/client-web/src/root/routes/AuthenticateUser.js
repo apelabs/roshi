@@ -20,7 +20,7 @@ const AuthenticateUser = () => {
             user,
           },
         });
-        localStorage.setItem('token', token);
+        localStorage.setItem('jwt-roshi-token', token);
       }}
     >
       {(authenticateUser, { data }) => (

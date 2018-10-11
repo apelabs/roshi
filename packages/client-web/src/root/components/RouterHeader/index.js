@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import { withApollo } from 'react-apollo';
 
 const linkBuilder = loggedUser => {
   let links = {
@@ -38,6 +39,19 @@ const linkBuilder = loggedUser => {
   });
 };
 
-const RouterHeader = ({ loggedUser }) => <nav>{linkBuilder(loggedUser)}</nav>;
+const RouterHeader = ({ loggedUser, client, history }) => {
+  const handleLogout = () => {
+    localStorage.removeItem('jwt-roshi-token');
+    client.resetStore();
+    history.push('/');
+  };
 
-export default withRouter(RouterHeader);
+  return (
+    <nav>
+      {linkBuilder(loggedUser)}
+      {loggedUser && <button onClick={handleLogout}>Logout</button>}
+    </nav>
+  );
+};
+
+export default withRouter(withApollo(RouterHeader));
