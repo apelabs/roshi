@@ -20,7 +20,7 @@ class App extends Component {
               <RouterHeader loggedUser={user && user.id} />
             </header>
             <div className="App-intro">
-              <RoshiRouter />
+              <RoshiRouter user={user} />
             </div>
           </div>
         )}

@@ -9,7 +9,7 @@ const GET_CLIENT_USER = gql`
   }
 `;
 
-const GET_CLIENT_USER_DETAILS = gql`
+const GET_FETCHED_CLIENT_USER_DETAILS = gql`
   {
     user @client {
       id
@@ -21,4 +21,15 @@ const GET_CLIENT_USER_DETAILS = gql`
   }
 `;
 
-export { GET_CLIENT_USER, GET_CLIENT_USER_DETAILS };
+const GET_CLIENT_USER_DETAILS = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      email
+      firstName
+      lastName
+      avatarUrl
+    }
+  }
+`;
+
+export { GET_CLIENT_USER, GET_CLIENT_USER_DETAILS, GET_FETCHED_CLIENT_USER_DETAILS };

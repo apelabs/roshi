@@ -9,13 +9,18 @@ const AuthenticateUser = () => {
   return (
     <Mutation
       mutation={mutations.AUTHENTICATE_USER}
-      onError={err => console.log(err, 'error')}
+      onError={err => {
+        console.log(err, 'error');
+      }}
       update={(cache, result) => {
+        const { user } = result.data.authenticateUser;
+        const { token } = result.data.authenticateUser;
         cache.writeData({
           data: {
-            user: result.data.authenticateUser.user,
+            user,
           },
         });
+        localStorage.setItem('token', token);
       }}
     >
       {(authenticateUser, { data }) => (

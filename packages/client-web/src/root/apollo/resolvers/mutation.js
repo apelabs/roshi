@@ -36,6 +36,7 @@ const AUTHENTICATE_USER = gql`
         lastName
         avatarUrl
       }
+      token
     }
   }
 `;

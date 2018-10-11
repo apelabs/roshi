@@ -6,12 +6,12 @@ import CreateUser from './CreateUser';
 import Profile from './Profile';
 import UpdateUser from './UpdateUser';
 
-const RoshiRouter = () => (
+const RoshiRouter = ({ user }) => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/login" component={AuthenticateUser} />
     <Route exact path="/register" component={CreateUser} />
-    <Route exact path="/profile" component={Profile} />
+    <Route exact path="/profile" render={props => <Profile {...props} user={user} />} />
     <Route exact path="/profile/edit" component={UpdateUser} />
   </Switch>
 );
