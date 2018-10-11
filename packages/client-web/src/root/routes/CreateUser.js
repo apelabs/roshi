@@ -1,5 +1,7 @@
-import React, { Fragment, createRef } from 'react';
+import React, { createRef } from 'react';
 import { Mutation } from 'react-apollo';
+
+import CreateUserForm from '../components/Forms/CreateUserForm';
 
 const mutations = require('../apollo/resolvers').Mutation;
 
@@ -9,6 +11,14 @@ const CreateUser = () => {
   const firstNameInput = createRef();
   const lastNameInput = createRef();
   const avatarInput = createRef();
+
+  const inputsRef = {
+    emailInput,
+    passwordInput,
+    firstNameInput,
+    lastNameInput,
+    avatarInput,
+  };
 
   return (
     <Mutation
@@ -22,32 +32,25 @@ const CreateUser = () => {
         });
       }}
     >
-      {(createUser, { data }) => (
-        <Fragment>
-          <h1>Register</h1>
-          <form
-            onSubmit={e => {
-              e.preventDefault();
-              createUser({
-                variables: {
-                  email: emailInput.current.value,
-                  password: passwordInput.current.value,
-                  firstName: firstNameInput.current.value,
-                  lastName: lastNameInput.current.value,
-                  avatarUrl: avatarInput.current.value,
-                },
-              });
-            }}
-          >
-            <input placeholder="Email" required ref={emailInput} type="email" />
-            <input placeholder="Password" required ref={passwordInput} type="password" />
-            <input placeholder="First name" ref={firstNameInput} type="text" />
-            <input placeholder="Last name" ref={lastNameInput} type="text" />
-            <input placeholder="Avatar" ref={avatarInput} type="text" />
-            <button type="submit">Register</button>
-          </form>
-        </Fragment>
-      )}
+      {createUser => {
+        const createUserHandler = event => {
+          event.preventDefault();
+          createUser({
+            variables: {
+              email: emailInput.current.value,
+              password: passwordInput.current.value,
+              firstName: firstNameInput.current.value,
+              lastName: lastNameInput.current.value,
+              avatarUrl: avatarInput.current.value,
+            },
+          });
+
+          // Clearing input fields
+          event.target.reset();
+        };
+
+        return <CreateUserForm createUserHandler={createUserHandler} {...inputsRef} />;
+      }}
     </Mutation>
   );
 };
