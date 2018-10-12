@@ -1,15 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import RoshiForm from './RoshiForm';
+import { authFormData } from './formData';
 
-const AuthenticateUserForm = ({ authenticateHandler, emailInput, passwordInput }) => (
-  <Fragment>
-    <h1>Login</h1>
-    <form onSubmit={authenticateHandler}>
-      <input ref={emailInput} type="email" />
-      <input ref={passwordInput} type="password" />
-
-      <button type="submit">Login</button>
-    </form>
-  </Fragment>
+const AuthenticateUserForm = ({ onSubmitHandler, onChangeHandler }) => (
+  <RoshiForm
+    formData={authFormData}
+    onSubmitHandler={onSubmitHandler}
+    onChangeHandler={onChangeHandler}
+  />
 );
 
 export default AuthenticateUserForm;

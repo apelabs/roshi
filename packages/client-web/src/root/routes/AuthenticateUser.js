@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import { Mutation } from 'react-apollo';
 
 import AuthenticateUserForm from '../components/Forms/AuthenticateUserForm';
@@ -6,12 +6,15 @@ import AuthenticateUserForm from '../components/Forms/AuthenticateUserForm';
 const mutations = require('../apollo/resolvers').Mutation;
 
 const AuthenticateUser = () => {
-  const emailInput = createRef();
-  const passwordInput = createRef();
+  const formInputs = {
+    'auth-email': '',
+    'auth-password': '',
+  };
 
-  const inputsRef = {
-    emailInput,
-    passwordInput,
+  const onChangeHandler = event => {
+    const { name, value } = event.target;
+
+    formInputs[name] = value;
   };
 
   return (
@@ -36,8 +39,8 @@ const AuthenticateUser = () => {
           event.preventDefault();
           authenticateUser({
             variables: {
-              email: emailInput.current.value,
-              password: passwordInput.current.value,
+              email: formInputs['auth-email'],
+              password: formInputs['auth-password'],
             },
           });
 
@@ -45,7 +48,12 @@ const AuthenticateUser = () => {
           event.target.reset();
         };
 
-        return <AuthenticateUserForm authenticateHandler={authenticateHandler} {...inputsRef} />;
+        return (
+          <AuthenticateUserForm
+            onChangeHandler={onChangeHandler}
+            onSubmitHandler={authenticateHandler}
+          />
+        );
       }}
     </Mutation>
   );
