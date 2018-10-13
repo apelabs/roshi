@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Mutation } from 'react-apollo';
 
 import CreateUserForm from '../components/Forms/CreateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
+import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
+import { getErrorMessage } from '../utils';
 
 const mutations = require('../apollo/resolvers').Mutation;
 
 const CreateUser = () => (
   <Mutation
     mutation={mutations.CREATE_USER}
-    onError={err => console.log(err, 'error')}
     update={(cache, result) => {
       cache.writeData({
         data: {
@@ -18,7 +19,7 @@ const CreateUser = () => (
       });
     }}
   >
-    {createUser => {
+    {(createUser, { error }) => {
       const createUserHandler = event => {
         event.preventDefault();
         createUser({
@@ -36,7 +37,10 @@ const CreateUser = () => (
       };
 
       return (
-        <CreateUserForm onChangeHandler={onChangeHandler} onSubmitHandler={createUserHandler} />
+        <Fragment>
+          {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+          <CreateUserForm onChangeHandler={onChangeHandler} onSubmitHandler={createUserHandler} />
+        </Fragment>
       );
     }}
   </Mutation>

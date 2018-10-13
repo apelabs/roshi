@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Query, Mutation } from 'react-apollo';
 
 import UpdateUserForm from '../components/Forms/UpdateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
+import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
+import { getErrorMessage } from '../utils';
 
 const mutations = require('../apollo/resolvers').Mutation;
 const queries = require('../apollo/resolvers').Query;
@@ -13,9 +15,6 @@ const UpdateUser = () => (
       return (
         <Mutation
           mutation={mutations.UPDATE_USER}
-          onError={err => {
-            console.log(err);
-          }}
           update={(cache, result) => {
             cache.writeData({
               data: {
@@ -31,7 +30,7 @@ const UpdateUser = () => (
             },
           ]}
         >
-          {updateUser => {
+          {(updateUser, { error }) => {
             const updateUserHandler = event => {
               event.preventDefault();
               updateUser({
@@ -51,11 +50,14 @@ const UpdateUser = () => (
             };
 
             return (
-              <UpdateUserForm
-                onChangeHandler={onChangeHandler}
-                onSubmitHandler={updateUserHandler}
-                user={user}
-              />
+              <Fragment>
+                {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+                <UpdateUserForm
+                  onChangeHandler={onChangeHandler}
+                  onSubmitHandler={updateUserHandler}
+                  user={user}
+                />
+              </Fragment>
             );
           }}
         </Mutation>

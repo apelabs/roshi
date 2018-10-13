@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Mutation } from 'react-apollo';
 
 import AuthenticateUserForm from '../components/Forms/AuthenticateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
+import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
+import { getErrorMessage } from '../utils';
 
 const mutations = require('../apollo/resolvers').Mutation;
 
 const AuthenticateUser = () => (
   <Mutation
     mutation={mutations.AUTHENTICATE_USER}
-    onError={err => {
-      console.log(err, 'error');
-    }}
     update={(cache, result) => {
       const { user } = result.data.authenticateUser;
       const { token } = result.data.authenticateUser;
@@ -23,7 +22,7 @@ const AuthenticateUser = () => (
       localStorage.setItem('jwt-roshi-token', token);
     }}
   >
-    {(authenticateUser, { data }) => {
+    {(authenticateUser, { error }) => {
       const authenticateHandler = event => {
         event.preventDefault();
         authenticateUser({
@@ -38,10 +37,13 @@ const AuthenticateUser = () => (
       };
 
       return (
-        <AuthenticateUserForm
-          onChangeHandler={onChangeHandler}
-          onSubmitHandler={authenticateHandler}
-        />
+        <Fragment>
+          {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+          <AuthenticateUserForm
+            onChangeHandler={onChangeHandler}
+            onSubmitHandler={authenticateHandler}
+          />
+        </Fragment>
       );
     }}
   </Mutation>
