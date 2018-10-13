@@ -6,18 +6,18 @@ import CreateUserForm from '../components/Forms/CreateUserForm';
 const mutations = require('../apollo/resolvers').Mutation;
 
 const CreateUser = () => {
-  const emailInput = createRef();
-  const passwordInput = createRef();
-  const firstNameInput = createRef();
-  const lastNameInput = createRef();
-  const avatarInput = createRef();
+  const formInputs = {
+    'new-email': '',
+    'new-password': '',
+    'new-firstName': '',
+    'new-lastName': '',
+    'new-avatarUrl': '',
+  };
 
-  const inputsRef = {
-    emailInput,
-    passwordInput,
-    firstNameInput,
-    lastNameInput,
-    avatarInput,
+  const onChangeHandler = event => {
+    const { name, value } = event.target;
+
+    formInputs[name] = value;
   };
 
   return (
@@ -37,11 +37,11 @@ const CreateUser = () => {
           event.preventDefault();
           createUser({
             variables: {
-              email: emailInput.current.value,
-              password: passwordInput.current.value,
-              firstName: firstNameInput.current.value,
-              lastName: lastNameInput.current.value,
-              avatarUrl: avatarInput.current.value,
+              email: formInputs['new-email'],
+              password: formInputs['new-password'],
+              firstName: formInputs['new-firstName'],
+              lastName: formInputs['new-lastName'],
+              avatarUrl: formInputs['new-avatarUrl'],
             },
           });
 
@@ -49,7 +49,9 @@ const CreateUser = () => {
           event.target.reset();
         };
 
-        return <CreateUserForm createUserHandler={createUserHandler} {...inputsRef} />;
+        return (
+          <CreateUserForm onChangeHandler={onChangeHandler} onSubmitHandler={createUserHandler} />
+        );
       }}
     </Mutation>
   );
