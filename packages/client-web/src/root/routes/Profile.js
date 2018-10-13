@@ -3,7 +3,7 @@ import { Query, Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
 import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
-import { getErrorMessage } from '../utils';
+import { getGraphqlErrorMessage } from '../utils';
 
 const queries = require('../apollo/resolvers').Query;
 const mutations = require('../apollo/resolvers').Mutation;
@@ -22,7 +22,7 @@ const Profile = ({ user: { id }, history }) => {
         } else {
           return (
             <Fragment>
-              {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+              {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
 
               <ol>{liBuilder(user)}</ol>
               <Link to={'/profile/edit'}>Edit Profile</Link>

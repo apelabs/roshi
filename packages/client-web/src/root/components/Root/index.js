@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 
 import RoshiRouter from '../../routes/RoshiRouter';
 import RoshiErrorModal from '../Modal/RoshiErrorModal';
-import { getErrorMessage } from '../../utils';
+import { getGraphqlErrorMessage } from '../../utils';
 import Header from '../Header';
 
 import './Root.css';
@@ -14,7 +14,7 @@ const App = () => (
   <Query query={queries.GET_CLIENT_USER}>
     {({ data: { user }, error }) => (
       <Fragment>
-        {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+        {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
         <div className="App">
           <Header user={user && user} />
           <div className="App-intro">

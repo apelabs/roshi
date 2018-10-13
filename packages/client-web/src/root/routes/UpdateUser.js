@@ -4,27 +4,22 @@ import { Query, Mutation } from 'react-apollo';
 import UpdateUserForm from '../components/Forms/UpdateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
 import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
-import { getErrorMessage } from '../utils';
+import { getGraphqlErrorMessage } from '../utils';
 
-const mutations = require('../apollo/resolvers').Mutation;
 const queries = require('../apollo/resolvers').Query;
+const mutations = require('../apollo/resolvers').Mutation;
+const mutationsUtils = require('../apollo/utils').mutations.updateCreateShared;
 
 const UpdateUser = () => (
   <Query query={queries.GET_FETCHED_CLIENT_USER_DETAILS}>
     {({ data: { user }, error }) => {
       return (
         <Fragment>
-          {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+          {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
           <Mutation
             mutation={mutations.UPDATE_USER}
-            update={(cache, result) => {
-              cache.writeData({
-                data: {
-                  user: result.data.updateUser.user,
-                },
-              });
-            }}
-            // Updating user values
+            update={mutationsUtils.updatePropCallback('updateUser')}
+            // Updating user values with refetch
             refetchQueries={[
               {
                 query: queries.GET_CLIENT_USER_DETAILS,
@@ -38,13 +33,7 @@ const UpdateUser = () => (
                 updateUser({
                   variables: {
                     id: user.id,
-                    update: {
-                      email: formInputs['email'],
-                      password: formInputs['password'],
-                      firstName: formInputs['firstName'],
-                      lastName: formInputs['lastName'],
-                      avatarUrl: formInputs['avatarUrl'],
-                    },
+                    update: mutationsUtils.populateMutationValues(formInputs),
                   },
                 });
                 // Clearing input fields
@@ -53,7 +42,7 @@ const UpdateUser = () => (
 
               return (
                 <Fragment>
-                  {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+                  {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
                   <UpdateUserForm
                     onChangeHandler={onChangeHandler}
                     onSubmitHandler={updateUserHandler}
