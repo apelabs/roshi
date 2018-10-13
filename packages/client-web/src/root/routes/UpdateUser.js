@@ -11,56 +11,59 @@ const queries = require('../apollo/resolvers').Query;
 
 const UpdateUser = () => (
   <Query query={queries.GET_FETCHED_CLIENT_USER_DETAILS}>
-    {({ data: { user } }) => {
+    {({ data: { user }, error }) => {
       return (
-        <Mutation
-          mutation={mutations.UPDATE_USER}
-          update={(cache, result) => {
-            cache.writeData({
-              data: {
-                user: result.data.updateUser.user,
-              },
-            });
-          }}
-          // Updating user values
-          refetchQueries={[
-            {
-              query: queries.GET_CLIENT_USER_DETAILS,
-              variables: { id: user.id },
-            },
-          ]}
-        >
-          {(updateUser, { error }) => {
-            const updateUserHandler = event => {
-              event.preventDefault();
-              updateUser({
-                variables: {
-                  id: user.id,
-                  update: {
-                    email: formInputs['email'],
-                    password: formInputs['password'],
-                    firstName: formInputs['firstName'],
-                    lastName: formInputs['lastName'],
-                    avatarUrl: formInputs['avatarUrl'],
-                  },
+        <Fragment>
+          {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+          <Mutation
+            mutation={mutations.UPDATE_USER}
+            update={(cache, result) => {
+              cache.writeData({
+                data: {
+                  user: result.data.updateUser.user,
                 },
               });
-              // Clearing input fields
-              event.target.reset();
-            };
+            }}
+            // Updating user values
+            refetchQueries={[
+              {
+                query: queries.GET_CLIENT_USER_DETAILS,
+                variables: { id: user.id },
+              },
+            ]}
+          >
+            {(updateUser, { error }) => {
+              const updateUserHandler = event => {
+                event.preventDefault();
+                updateUser({
+                  variables: {
+                    id: user.id,
+                    update: {
+                      email: formInputs['email'],
+                      password: formInputs['password'],
+                      firstName: formInputs['firstName'],
+                      lastName: formInputs['lastName'],
+                      avatarUrl: formInputs['avatarUrl'],
+                    },
+                  },
+                });
+                // Clearing input fields
+                event.target.reset();
+              };
 
-            return (
-              <Fragment>
-                {error && <RoshiErrorModal message={getErrorMessage(error)} />}
-                <UpdateUserForm
-                  onChangeHandler={onChangeHandler}
-                  onSubmitHandler={updateUserHandler}
-                  user={user}
-                />
-              </Fragment>
-            );
-          }}
-        </Mutation>
+              return (
+                <Fragment>
+                  {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+                  <UpdateUserForm
+                    onChangeHandler={onChangeHandler}
+                    onSubmitHandler={updateUserHandler}
+                    user={user}
+                  />
+                </Fragment>
+              );
+            }}
+          </Mutation>
+        </Fragment>
       );
     }}
   </Query>

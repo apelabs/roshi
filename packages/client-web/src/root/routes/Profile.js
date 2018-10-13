@@ -2,6 +2,9 @@ import React, { Fragment } from 'react';
 import { Query, Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
+import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
+import { getErrorMessage } from '../utils';
+
 const queries = require('../apollo/resolvers').Query;
 const mutations = require('../apollo/resolvers').Mutation;
 
@@ -13,12 +16,14 @@ const Profile = ({ user: { id }, history }) => {
 
   return (
     <Query query={queries.GET_CLIENT_USER_DETAILS} variables={{ id }}>
-      {({ loading, data: { user } }) => {
+      {({ data: { user }, error, loading }) => {
         if (loading) {
           return null;
         } else {
           return (
             <Fragment>
+              {error && <RoshiErrorModal message={getErrorMessage(error)} />}
+
               <ol>{liBuilder(user)}</ol>
               <Link to={'/profile/edit'}>Edit Profile</Link>
               <Mutation
