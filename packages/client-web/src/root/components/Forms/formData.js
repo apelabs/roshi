@@ -26,61 +26,72 @@ export const authFormData = {
   ],
 };
 
+const defaultUserFields = [
+  {
+    type: 'email',
+    id: 'email',
+    name: 'email',
+    label: 'Email',
+    placeholder: 'Type your email',
+    variant: 'outlined',
+    required: true,
+  },
+  {
+    type: 'password',
+    id: 'password',
+    name: 'password',
+    label: 'Password',
+    placeholder: 'Type your password',
+    variant: 'outlined',
+    required: true,
+  },
+  {
+    type: 'text',
+    id: 'firstName',
+    name: 'firstName',
+    label: 'First Name',
+    placeholder: 'Type your firstName',
+    variant: 'outlined',
+  },
+  {
+    type: 'text',
+    id: 'lastName',
+    name: 'lastName',
+    label: 'Last Name',
+    placeholder: 'Type your lastName',
+    variant: 'outlined',
+  },
+  {
+    type: 'text',
+    id: 'avatarUrl',
+    name: 'avatarUrl',
+    label: 'avatarUrl',
+    placeholder: 'Type your avatarUrl',
+    variant: 'outlined',
+  },
+];
+
 export const createUserFormData = {
   text: {
     header: 'Create new User',
     button: 'Create new User',
     form: 'Fill the form to create a new user',
   },
-  inputsData: [
-    {
-      type: 'email',
-      id: 'new-email',
-      name: 'new-email',
-      label: 'Email',
-      placeholder: 'Type your email',
-      variant: 'outlined',
-      required: true,
-    },
-    {
-      type: 'password',
-      id: 'new-password',
-      name: 'new-password',
-      label: 'Password',
-      placeholder: 'Type your password',
-      variant: 'outlined',
-      required: true,
-    },
-    {
-      type: 'text',
-      id: 'new-firstName',
-      name: 'new-firstName',
-      label: 'firstName',
-      placeholder: 'Type your firstName',
-      variant: 'outlined',
-    },
-    {
-      type: 'text',
-      id: 'new-lastName',
-      name: 'new-lastName',
-      label: 'lastName',
-      placeholder: 'Type your lastName',
-      variant: 'outlined',
-    },
-    {
-      type: 'text',
-      id: 'new-avatarUrl',
-      name: 'new-avatarUrl',
-      label: 'avatarUrl',
-      placeholder: 'Type your avatarUrl',
-      variant: 'outlined',
-    },
-  ],
+  inputsData: [...defaultUserFields],
+};
+
+export const updateUserFormData = {
+  text: {
+    header: 'Update User details',
+    button: 'Update User details',
+    form: 'Fill the form to Update your details',
+  },
+  inputsData: [...defaultUserFields],
 };
 
 export const formInputs = {
   ...authFormData.inputsData,
-  ...createUserFormData.inputsData,
+  ...defaultUserFields,
 };
 
 export const onChangeHandler = event => {

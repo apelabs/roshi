@@ -1,35 +1,23 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import RoshiForm from './RoshiForm';
+import { updateUserFormData } from './formData';
 
-const UpdateUserForm = ({
-  updateUserHandler,
-  emailInput,
-  passwordInput,
-  firstNameInput,
-  lastNameInput,
-  avatarInput,
-  user,
-}) => (
-  <Fragment>
-    <h1>Update</h1>
-    <form onSubmit={updateUserHandler}>
-      <input defaultValue={user.email} placeholder="Email" ref={emailInput} type="email" />
-      <input
-        defaultValue={user.password}
-        placeholder="Password"
-        ref={passwordInput}
-        type="password"
-      />
-      <input
-        defaultValue={user.firstName}
-        placeholder="First name"
-        ref={firstNameInput}
-        type="text"
-      />
-      <input defaultValue={user.lastName} placeholder="Last name" ref={lastNameInput} type="text" />
-      <input defaultValue={user.avatarUrl} placeholder="Avatar" ref={avatarInput} type="text" />
-      <button type="submit">Update</button>
-    </form>
-  </Fragment>
-);
+const UpdateUserForm = ({ onSubmitHandler, onChangeHandler, user }) => {
+  const copyInputsData = [...updateUserFormData.inputsData].map(input => {
+    input.defaultValue = user[input.name];
+
+    return input;
+  });
+
+  updateUserFormData.inputsData = copyInputsData;
+
+  return (
+    <RoshiForm
+      formData={updateUserFormData}
+      onSubmitHandler={onSubmitHandler}
+      onChangeHandler={onChangeHandler}
+    />
+  );
+};
 
 export default UpdateUserForm;

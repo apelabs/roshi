@@ -23,11 +23,11 @@ const CreateUser = () => (
         event.preventDefault();
         createUser({
           variables: {
-            email: formInputs['new-email'],
-            password: formInputs['new-password'],
-            firstName: formInputs['new-firstName'],
-            lastName: formInputs['new-lastName'],
-            avatarUrl: formInputs['new-avatarUrl'],
+            email: formInputs['email'],
+            password: formInputs['password'],
+            firstName: formInputs['firstName'],
+            lastName: formInputs['lastName'],
+            avatarUrl: formInputs['avatarUrl'],
           },
         });
 
