@@ -8,6 +8,8 @@ const RoshiForm = ({ onSubmitHandler, formData, onChangeHandler }) => (
     <Material.FormControl component={'form'} onSubmit={onSubmitHandler} fullWidth margin="dense">
       <Material.FormControl component="fieldset">
         <Material.FormLabel component="legend">{formData.text.form}</Material.FormLabel>
+
+        {/* Rendering the input fields */}
         {formData.inputsData.map(input => (
           <Material.TextField key={input.id} onChange={onChangeHandler} margin="dense" {...input} />
         ))}

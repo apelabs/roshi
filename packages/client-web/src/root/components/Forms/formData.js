@@ -77,3 +77,14 @@ export const createUserFormData = {
     },
   ],
 };
+
+export const formInputs = {
+  ...authFormData.inputsData,
+  ...createUserFormData.inputsData,
+};
+
+export const onChangeHandler = event => {
+  const { name, value } = event.target;
+
+  formInputs[name] = value;
+};
