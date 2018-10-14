@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -8,6 +8,7 @@ import * as UIIcons from '@material-ui/icons/';
 // components
 import IconButton from '@material-ui/core/IconButton';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
+import Snackbar from '@material-ui/core/Snackbar';
 
 // styles and colors
 import { withStyles } from '@material-ui/core/styles';
@@ -47,7 +48,8 @@ const styles = theme => ({
   },
 });
 
-const RoshiBaseModal = ({ classes, className, message, onClose, variant, ...other }) => {
+function ModalContent(props) {
+  const { classes, className, message, onClose, variant, ...other } = props;
   const Icon = variantIcon[variant];
 
   return (
@@ -74,9 +76,9 @@ const RoshiBaseModal = ({ classes, className, message, onClose, variant, ...othe
       {...other}
     />
   );
-};
+}
 
-RoshiBaseModal.propTypes = {
+ModalContent.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   message: PropTypes.node,
@@ -84,4 +86,40 @@ RoshiBaseModal.propTypes = {
   variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
 };
 
-export default withStyles(styles)(RoshiBaseModal);
+const WrappedModalComponent = withStyles(styles)(ModalContent);
+
+class RoshiBaseModal extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isOpen: true,
+    };
+
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleClose() {
+    this.setState({
+      isOpen: false,
+    });
+  }
+
+  render() {
+    return (
+      <Snackbar
+        open={this.state.isOpen}
+        onClose={this.handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <WrappedModalComponent
+          onClose={this.handleClose}
+          message={this.props.message}
+          variant={this.props.variant}
+        />
+      </Snackbar>
+    );
+  }
+}
+
+export default RoshiBaseModal;

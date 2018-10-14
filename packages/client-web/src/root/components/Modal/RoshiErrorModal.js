@@ -1,8 +1,6 @@
 import React from 'react';
-import WrappedModalComponent from './WrappedModalComponent';
+import RoshiBaseModal from './RoshiBaseModal';
 
-const RoshiErrorModal = ({ message }) => (
-  <WrappedModalComponent variant="error" message={message} />
-);
+const RoshiErrorModal = ({ message }) => <RoshiBaseModal variant="error" message={message} />;
 
 export default RoshiErrorModal;
