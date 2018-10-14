@@ -5,6 +5,7 @@ import UpdateUserForm from '../components/Forms/UpdateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
 import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
 import RoshiSuccessModal from '../components/Modal/RoshiSuccessModal';
+import RoshiLoader from '../components/Loader/';
 import { getGraphqlErrorMessage } from '../utils';
 
 const queries = require('../apollo/resolvers').Query;
@@ -31,7 +32,7 @@ const UpdateUser = () => (
               },
             ]}
           >
-            {(updateUser, { data, error }) => {
+            {(updateUser, { loading, error, data }) => {
               const updateUserHandler = event => {
                 event.preventDefault();
                 updateUser({
@@ -46,6 +47,7 @@ const UpdateUser = () => (
 
               return (
                 <Fragment>
+                  {loading && <RoshiLoader />}
                   {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
                   {data && (
                     <RoshiSuccessModal

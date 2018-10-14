@@ -3,6 +3,7 @@ import { Query, Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
 import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
+import RoshiLoader from '../components/Loader/';
 import { getGraphqlErrorMessage } from '../utils';
 
 const queries = require('../apollo/resolvers').Query;
@@ -17,28 +18,25 @@ const Profile = ({ user: { id }, history }) => {
   return (
     <Query query={queries.GET_CLIENT_USER_DETAILS} variables={{ id }}>
       {({ data: { user }, error, loading }) => {
-        if (loading) {
-          return null;
-        } else {
-          return (
-            <Fragment>
-              {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
+        return (
+          <Fragment>
+            {loading && <RoshiLoader />}
+            {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
 
-              <ol>{liBuilder(user)}</ol>
-              <Link to={'/profile/edit'}>Edit Profile</Link>
-              <Mutation
-                mutation={mutations.DELETE_USER}
-                variables={{ id }}
-                onError={err => {
-                  console.log(err);
-                }}
-                onCompleted={navigateToHomePage}
-              >
-                {deleteUser => <button onClick={deleteUser}>Delete User</button>}
-              </Mutation>
-            </Fragment>
-          );
-        }
+            <ol>{liBuilder(user)}</ol>
+            <Link to={'/profile/edit'}>Edit Profile</Link>
+            <Mutation
+              mutation={mutations.DELETE_USER}
+              variables={{ id }}
+              onError={err => {
+                console.log(err);
+              }}
+              onCompleted={navigateToHomePage}
+            >
+              {deleteUser => <button onClick={deleteUser}>Delete User</button>}
+            </Mutation>
+          </Fragment>
+        );
       }}
     </Query>
   );

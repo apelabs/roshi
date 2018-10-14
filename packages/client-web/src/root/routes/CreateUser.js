@@ -5,6 +5,7 @@ import CreateUserForm from '../components/Forms/CreateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
 import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
 import RoshiSuccessModal from '../components/Modal/RoshiSuccessModal';
+import RoshiLoader from '../components/Loader/';
 import { getGraphqlErrorMessage } from '../utils';
 
 const mutations = require('../apollo/resolvers').Mutation;
@@ -15,7 +16,7 @@ const {
 
 const CreateUser = () => (
   <Mutation mutation={mutations.CREATE_USER} update={updatePropCallback('createUser')}>
-    {(createUser, { data, error }) => {
+    {(createUser, { loading, error, data }) => {
       const createUserHandler = event => {
         event.preventDefault();
         createUser({
@@ -28,6 +29,7 @@ const CreateUser = () => (
 
       return (
         <Fragment>
+          {loading && <RoshiLoader />}
           {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
           {data && (
             <RoshiSuccessModal message={`${data.createUser.user.email} user created successfuly`} />
