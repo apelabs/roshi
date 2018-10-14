@@ -8,12 +8,12 @@ import RoshiSuccessModal from '../components/Modal/RoshiSuccessModal';
 import { getGraphqlErrorMessage } from '../utils';
 
 const mutations = require('../apollo/resolvers').Mutation;
-const mutationsUtils = require('../apollo/utils').mutations.authenticateUser;
+const { updatePropCallback, mutateHandler } = require('../apollo/utils').mutations.authenticateUser;
 
 const AuthenticateUser = () => (
-  <Mutation mutation={mutations.AUTHENTICATE_USER} update={mutationsUtils.updatePropCallback}>
+  <Mutation mutation={mutations.AUTHENTICATE_USER} update={updatePropCallback}>
     {(authenticateUser, { data, error }) => {
-      const authenticateHandler = mutationsUtils.mutateHandler(authenticateUser, formInputs);
+      const authenticateHandler = mutateHandler(authenticateUser, formInputs);
 
       return (
         <Fragment>

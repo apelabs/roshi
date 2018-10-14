@@ -4,21 +4,22 @@ import { Mutation } from 'react-apollo';
 import CreateUserForm from '../components/Forms/CreateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
 import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
+import RoshiSuccessModal from '../components/Modal/RoshiSuccessModal';
 import { getGraphqlErrorMessage } from '../utils';
 
 const mutations = require('../apollo/resolvers').Mutation;
-const mutationsUtils = require('../apollo/utils').mutations.updateCreateShared;
+const {
+  updatePropCallback,
+  populateMutationValues,
+} = require('../apollo/utils').mutations.updateCreateShared;
 
 const CreateUser = () => (
-  <Mutation
-    mutation={mutations.CREATE_USER}
-    update={mutationsUtils.updatePropCallback('createUser')}
-  >
-    {(createUser, { error }) => {
+  <Mutation mutation={mutations.CREATE_USER} update={updatePropCallback('createUser')}>
+    {(createUser, { data, error }) => {
       const createUserHandler = event => {
         event.preventDefault();
         createUser({
-          variables: mutationsUtils.populateMutationValues(formInputs),
+          variables: populateMutationValues(formInputs),
         });
 
         // Clearing input fields
@@ -28,6 +29,9 @@ const CreateUser = () => (
       return (
         <Fragment>
           {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
+          {data && (
+            <RoshiSuccessModal message={`${data.createUser.user.email} user created successfuly`} />
+          )}
           <CreateUserForm onChangeHandler={onChangeHandler} onSubmitHandler={createUserHandler} />
         </Fragment>
       );

@@ -4,11 +4,15 @@ import { Query, Mutation } from 'react-apollo';
 import UpdateUserForm from '../components/Forms/UpdateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
 import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
+import RoshiSuccessModal from '../components/Modal/RoshiSuccessModal';
 import { getGraphqlErrorMessage } from '../utils';
 
 const queries = require('../apollo/resolvers').Query;
 const mutations = require('../apollo/resolvers').Mutation;
-const mutationsUtils = require('../apollo/utils').mutations.updateCreateShared;
+const {
+  updatePropCallback,
+  populateMutationValues,
+} = require('../apollo/utils').mutations.updateCreateShared;
 
 const UpdateUser = () => (
   <Query query={queries.GET_FETCHED_CLIENT_USER_DETAILS}>
@@ -18,7 +22,7 @@ const UpdateUser = () => (
           {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
           <Mutation
             mutation={mutations.UPDATE_USER}
-            update={mutationsUtils.updatePropCallback('updateUser')}
+            update={updatePropCallback('updateUser')}
             // Updating user values with refetch
             refetchQueries={[
               {
@@ -27,13 +31,13 @@ const UpdateUser = () => (
               },
             ]}
           >
-            {(updateUser, { error }) => {
+            {(updateUser, { data, error }) => {
               const updateUserHandler = event => {
                 event.preventDefault();
                 updateUser({
                   variables: {
                     id: user.id,
-                    update: mutationsUtils.populateMutationValues(formInputs),
+                    update: populateMutationValues(formInputs),
                   },
                 });
                 // Clearing input fields
@@ -43,6 +47,11 @@ const UpdateUser = () => (
               return (
                 <Fragment>
                   {error && <RoshiErrorModal message={getGraphqlErrorMessage(error)} />}
+                  {data && (
+                    <RoshiSuccessModal
+                      message={`${data.updateUser.email} details successfuly updated`}
+                    />
+                  )}
                   <UpdateUserForm
                     onChangeHandler={onChangeHandler}
                     onSubmitHandler={updateUserHandler}
