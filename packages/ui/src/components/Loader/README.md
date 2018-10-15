@@ -1,4 +1,4 @@
-### Default Loader:
+### Default RoshiLoader:
 
 ```js
 <RoshiLoader />

@@ -86,6 +86,14 @@ ModalContent.propTypes = {
   variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
 };
 
+/**
+ * [Custom Modal using Snackbar component from Material-ui](https://material-ui.com/api/snackbar//)
+ *
+ * > Already exporting 'success', 'warning', 'error', 'info'
+ *
+ * @visibleName RoshiBaseModal
+ */
+
 const WrappedModalComponent = withStyles(styles)(ModalContent);
 
 class RoshiBaseModal extends Component {
@@ -121,5 +129,19 @@ class RoshiBaseModal extends Component {
     );
   }
 }
+
+RoshiBaseModal.propTypes = {
+  /** Message to be displayed **/
+  message: PropTypes.node.isRequired,
+  /** Type of error to be displayed **/
+  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
+};
+
+RoshiBaseModal.defaultProps = {
+  message: 'Kameha',
+  variant: 'success',
+};
+
+/** @component */
 
 export default RoshiBaseModal;

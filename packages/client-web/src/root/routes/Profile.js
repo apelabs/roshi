@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Query, Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
-import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
+import { RoshiErrorModal } from '@roshi/ui';
 import { RoshiLoader } from '@roshi/ui';
 import { getGraphqlErrorMessage } from '../utils';
 

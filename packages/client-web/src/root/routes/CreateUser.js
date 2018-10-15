@@ -3,8 +3,8 @@ import { Mutation } from 'react-apollo';
 
 import CreateUserForm from '../components/Forms/CreateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
-import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
-import RoshiSuccessModal from '../components/Modal/RoshiSuccessModal';
+import { RoshiErrorModal } from '@roshi/ui';
+import { RoshiSuccessModal } from '@roshi/ui';
 import { RoshiLoader } from '@roshi/ui';
 import { getGraphqlErrorMessage } from '../utils';
 

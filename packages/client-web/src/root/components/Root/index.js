@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Query } from 'react-apollo';
 
 import RoshiRouter from '../../routes/RoshiRouter';
-import RoshiErrorModal from '../Modal/RoshiErrorModal';
+import { RoshiErrorModal } from '@roshi/ui';
 import { getGraphqlErrorMessage } from '../../utils';
 import Header from '../Header';
 
