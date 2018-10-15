@@ -1,5 +1,5 @@
 import React from 'react';
-import RoshiForm from './RoshiForm';
+import { RoshiForm } from '@roshi/ui';
 import { createUserFormData } from './formData';
 
 const CreateUserForm = ({ onSubmitHandler, onChangeHandler }) => (

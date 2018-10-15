@@ -1,5 +1,5 @@
 import React from 'react';
-import RoshiForm from './RoshiForm';
+import { RoshiForm } from '@roshi/ui';
 import { authFormData } from './formData';
 
 const AuthenticateUserForm = ({ onSubmitHandler, onChangeHandler }) => (

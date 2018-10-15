@@ -5,3 +5,4 @@ export { default as RoshiErrorModal } from './components/Modal/RoshiErrorModal';
 export { default as RoshiSuccessModal } from './components/Modal/RoshiSuccessModal';
 export { default as RoshiInfoModal } from './components/Modal/RoshiInfoModal';
 export { default as RoshiWarningModal } from './components/Modal/RoshiWarningModal';
+export { default as RoshiForm } from './components/Form';
