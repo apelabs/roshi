@@ -3,7 +3,7 @@ import { Query, Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
 import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
-import RoshiLoader from '../components/Loader/';
+import { RoshiLoader } from '@roshi/ui';
 import { getGraphqlErrorMessage } from '../utils';
 
 const queries = require('../apollo/resolvers').Query;

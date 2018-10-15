@@ -5,7 +5,7 @@ import UpdateUserForm from '../components/Forms/UpdateUserForm';
 import { onChangeHandler, formInputs } from '../components/Forms/formData';
 import RoshiErrorModal from '../components/Modal/RoshiErrorModal';
 import RoshiSuccessModal from '../components/Modal/RoshiSuccessModal';
-import RoshiLoader from '../components/Loader/';
+import { RoshiLoader } from '@roshi/ui';
 import { getGraphqlErrorMessage } from '../utils';
 
 const queries = require('../apollo/resolvers').Query;
