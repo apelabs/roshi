@@ -1,0 +1,18 @@
+FROM node:10-alpine
+
+WORKDIR /usr/src/app
+
+RUN yarn global add lerna
+
+COPY ./package.json .
+# COPY yarn.lock .
+RUN yarn install --no-lockfile
+
+COPY ./packages/server /usr/src/app/packages/server
+EXPOSE 4000 9229 9230
+
+COPY lerna.json .
+# https://github.com/lerna/lerna/issues/1457
+RUN lerna bootstrap
+
+CMD ["yarn", "dev:backend"]

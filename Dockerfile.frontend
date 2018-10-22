@@ -1,0 +1,23 @@
+FROM node:10-alpine
+
+WORKDIR /usr/src/app
+
+RUN yarn global add lerna
+
+COPY ./package.json .
+# COPY yarn.lock .
+RUN yarn install --no-lockfile
+
+COPY ./packages/ui /usr/src/app/packages/ui
+EXPOSE 9009 6060
+COPY ./packages/admin /usr/src/app/packages/admin
+EXPOSE 4000
+COPY ./packages/site /usr/src/app/packages/site
+EXPOSE 8080
+COPY ./packages/client-web /usr/src/app/packages/client-web
+EXPOSE 3000
+
+COPY lerna.json .
+RUN lerna bootstrap
+
+CMD yarn dev:frontend

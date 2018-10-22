@@ -1,0 +1,48 @@
+{
+  "name": "@roshi/client-web",
+  "version": "0.1.0",
+  "author": "ApeLabs",
+  "contributors": [
+    "Albert Vallverdu <byverdu@gmail.com>",
+    "Xavier Fuentes <me@xavierfuentes.com>"
+  ],
+  "private": true,
+  "proxy": {
+    "/api": {
+      "target": "http://roshi_server:4010",
+      "pathRewrite": {
+        "^/api": "/"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@roshi/ui": "^0.1.0",
+    "@material-ui/core": "^3.2.0",
+    "@material-ui/icons": "^3.0.1",
+    "apollo-boost": "^0.1.16",
+    "apollo-cache-inmemory": "^1.2.10",
+    "apollo-client": "^2.4.2",
+    "apollo-link": "^1.2.3",
+    "apollo-link-context": "^1.0.9",
+    "apollo-link-http": "^1.5.5",
+    "apollo-link-state": "^0.4.2",
+    "graphql": "^14.0.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-apollo": "^2.2.3",
+    "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  }
+}

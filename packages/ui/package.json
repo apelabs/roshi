@@ -1,0 +1,52 @@
+{
+  "name": "@roshi/ui",
+  "version": "0.1.0",
+  "author": "ApeLabs",
+  "contributors": [
+    "Albert Vallverdu <byverdu@gmail.com>",
+    "Xavier Fuentes <me@xavierfuentes.com>"
+  ],
+  "main": "build/index.js",
+  "scripts": {
+    "build": "npm run build:stories && npm run build:docs && npm run build:app",
+    "build:app": "npm run clean:app && NODE_ENV=production babel src/ --out-dir build --copy-files --ignore __stories__,__tests__,spec.js,test.js,__snapshots__",
+    "build:docs": "styleguidist build",
+    "build:stories": "build-storybook -s public",
+    "clean:app": "rimraf build",
+    "clean:docs": "rimraf styleguide",
+    "clean:stories": "rimraf storybook-static",
+    "dev": "concurrently 'npm run dev:app' 'npm run dev:docs' 'npm run dev:stories'",
+    "dev:app": "npm run build:app -- --watch",
+    "dev:docs": "styleguidist server",
+    "dev:stories": "start-storybook -p 9009 -s public",
+    "eject": "react-scripts eject",
+    "test": "react-scripts test --env=jsdom"
+  },
+  "dependencies": {
+    "emotion": "^9.2.8",
+    "emotion-theming": "^9.2.6",
+    "react-emotion": "^9.2.8",
+    "rebass": "^2.0.0-10",
+    "styled-components": "^3.4.5"
+  },
+  "devDependencies": {
+    "@material-ui/core": "^3.2.1",
+    "@storybook/addon-actions": "^3.4.10",
+    "@storybook/addon-links": "^3.4.10",
+    "@storybook/addon-storyshots": "^3.4.10",
+    "@storybook/addons": "^3.4.10",
+    "@storybook/react": "^3.4.10",
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "concurrently": "^4.0.1",
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-16": "^1.2.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-scripts": "1.1.4",
+    "react-styleguidist": "^7.2.5",
+    "react-test-renderer": "^16.4.2",
+    "rimraf": "^2.6.2"
+  }
+}

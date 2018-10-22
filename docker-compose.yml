@@ -1,47 +1,58 @@
-version: '3.1'
+version: '3.7'
 services:
-  server:
-    build:
-      context: ./packages/server
-    env_file: ./packages/server/.env
-    container_name: roshi_server
-    ports:
-      - 4000:4000
-    volumes:
-      - ./packages/server:/usr/src/app
-      - /usr/src/app/node_modules
-    links:
-      - mongodb
-    depends_on:
-      - mongodb
-    command: npm run dev
-
-  mongodb:
+  db:
     image: mongo
     container_name: roshi_db
     restart: always
     ports:
-      - 27017:27017
+      - 2020:27017
     volumes:
-      # - data-volume:/data/db # adds data persistence
-      - ./packages/db:/docker-entrypoint-initdb.d
+      # - ./packages/db/data:/data/db # adds data persistence
+      - ./packages/db/seed:/docker-entrypoint-initdb.d
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: kamehouse
     command: --smallfiles
 
-  webclient:
+  backend:
     build:
-      context: ./packages/client/web
-    container_name: roshi_webclient
-    ports:
-      - 3000:3000
-    volumes:
-      - ./packages/client/web:/usr/src/app
-      - /usr/src/app/node_modules
+      context: .
+      dockerfile: ./Dockerfile.backend
+    container_name: roshi_backend
     depends_on:
-      - server
-    links:
-      - server
-    command: npm run dev
+      - db
+    ports:
+      - 4010:4000
+      - 9229:9229
+      - 9230:9230
+    volumes:
+      - ./packages/server/package.json:/usr/src/app/packages/server/package.json
+      - ./packages/server:/usr/src/app/packages/server
+      - /usr/src/app/packages/server/node_modules
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.frontend
+    container_name: roshi_frontend
+    depends_on:
+      - backend
+    ports:
+      # ui
+      - "3010:9009"
+      - "3020:6060"
+      # site
+      - "3030:8080"
+      # clientweb
+      - "3040:3000"
+    volumes:
+      - ./packages/ui/package.json:/usr/src/app/packages/ui/package.json
+      - ./packages/ui:/usr/src/app/packages/ui
+      - /usr/src/app/packages/ui/node_modules
+      - ./packages/site/package.json:/usr/src/app/packages/site/package.json
+      - ./packages/SITE:/usr/src/app/packages/SITE
+      - /usr/src/app/packages/site/node_modules
+      - ./packages/client-web/package.json:/usr/src/app/packages/client-web/package.json
+      - ./packages/client-web:/usr/src/app/packages/client-web
+      - /usr/src/app/packages/client-web/node_modules

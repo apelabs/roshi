@@ -1,15 +1,19 @@
 require('dotenv').config();
 
-const express = require('express');
+const { MONGODB_URI, NODE_ENV = 'development', PORT = 4000 } = process.env;
+const logger = require('./logger');
+const server = require('./server');
+const { connectDatabase } = require('./database');
 
-const port = process.env.PORT || 4000;
-const app = express();
+(async () => {
+  try {
+    await connectDatabase(MONGODB_URI, NODE_ENV !== 'production');
+  } catch (error) {
+    logger.error('Could not connect to database', { error });
+    throw error;
+  }
 
-app.use('/', (req, res) => {
-  res.statusCode = 200;
-	res.json({ status:"success", message:"Hello world!", data:{ } })
-})
+  const { url } = await server.listen(PORT);
 
-app.listen(port, () => {
-  console.log(`Server listing on ${port}`);
-})
+  logger.info(`🚀 Server ready at ${url}/graphql`);
+})();

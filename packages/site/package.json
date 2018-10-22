@@ -1,9 +1,20 @@
 {
-  "name": "site",
+  "name": "@roshi/site",
   "version": "0.0.0",
-  "author": "Xavier Fuentes <me@xavierfuentes.com>",
-  "main": "index.js",
+  "author": "ApeLabs",
+  "contributors": [
+    "Albert Vallverdu <byverdu@gmail.com>",
+    "Xavier Fuentes <me@xavierfuentes.com>"
+  ],
   "license": "MIT",
-  "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "dev": "next -p 8080",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^6.1.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
 }

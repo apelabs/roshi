@@ -1,7 +1,11 @@
 {
-  "name": "@apelabs/roshi-admin",
+  "name": "@roshi/admin",
   "version": "0.0.0",
-  "author": "Xavier Fuentes <me@xavierfuentes.com>",
+  "author": "ApeLabs",
+  "contributors": [
+    "Albert Vallverdu <byverdu@gmail.com>",
+    "Xavier Fuentes <me@xavierfuentes.com>"
+  ],
   "main": "index.js",
   "license": "MIT",
   "dependencies": {},
